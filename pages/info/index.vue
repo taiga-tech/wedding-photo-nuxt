@@ -1,0 +1,13 @@
+<template>
+  <v-container>
+    <h1>作成者について</h1>
+    <div>
+      <h2>各種リンク</h2>
+      <ul>
+        <li>github</li>
+        <li>twitter</li>
+        <li>homepage</li>
+      </ul>
+    </div>
+  </v-container>
+</template>
