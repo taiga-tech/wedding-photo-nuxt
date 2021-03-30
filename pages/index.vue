@@ -1,27 +1,29 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <div class="text-center"></div>
-      <v-card>
-        <pre v-if="posts">{{ posts }}</pre>
-        <v-btn @click="getApi">go</v-btn>
-      </v-card>
-    </v-col>
-  </v-row>
+  <v-container>
+    <div style="width: 100%; height: 100%" align="center" justify="center">
+      <div>
+        <auth-login v-if="!check"></auth-login>
+        <div v-if="check">
+          <v-btn :to="`/room/${user.id}/`">
+            <v-icon left>mdi-table-large</v-icon>
+            {{ user.name }}に入室する</v-btn
+          >
+        </div>
+      </div>
+    </div>
+  </v-container>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      posts: null,
-    }
-  },
-  methods: {
-    async getApi() {
-      const response = await this.$axios.$get('/api/posts/')
+  // middleware: 'logined_user',
 
-      this.posts = response
+  computed: {
+    check() {
+      return this.$store.getters['auth/check']
+    },
+    user() {
+      return this.$store.getters['auth/user']
     },
   },
 }
