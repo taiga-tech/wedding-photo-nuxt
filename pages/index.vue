@@ -15,16 +15,9 @@
 </template>
 
 <script>
-export default {
-  // middleware: 'logined_user',
+import AuthComputed from '~/assets/mixins/AuthComputed.js'
 
-  computed: {
-    check() {
-      return this.$store.getters['auth/check']
-    },
-    user() {
-      return this.$store.getters['auth/user']
-    },
-  },
+export default {
+  mixins: [AuthComputed],
 }
 </script>
