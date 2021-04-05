@@ -5,10 +5,7 @@ export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
 
-  server: {
-    host: '0',
-    port: 3000,
-  },
+  server: { host: '0', port: 3000 },
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -47,17 +44,12 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
-  router: {
-    // middleware: ['not_logined_user', 'logined_user'],
-    middleware: 'maintenance',
-  },
-
-  // Global CSS (https://go.nuxtjs.dev/config-css)
-  // css: [],
+  router: { middleware: 'maintenance' },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { src: '~/plugins/nuxt-client-init.js', ssr: false },
+    { src: '~/plugins/vue-masonry', ssr: false },
     '~/plugins/axios',
   ],
 
@@ -101,7 +93,7 @@ export default {
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
-    customVariables: ['~/assets/variables.scss'],
+    // customVariables: ['~/assets/variables.scss'],
     defaultAssets: {
       font: false,
     },
@@ -133,7 +125,7 @@ export default {
 
   env: {
     BASE_URL: process.env.BASE_URL,
-    AWS_CDN_URL: process.env.AWS_CDN_URL, // cloudfront url
+    AWS_CDN_URL: process.env.AWS_CDN_URL, // awscloudfront url
     MAINTENANCE_MODE: process.env.MAINTENANCE_MODE, // true : false
   },
 }
