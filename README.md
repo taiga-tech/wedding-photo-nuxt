@@ -1,20 +1,29 @@
 # wedding-photop-app
 
+<!-- ## Usage -->
+
+## Dependency
+||Version|
+|---|---|
+|Mac OS|Catalina 10.15.7|
+|Node|v15.4.0|
+|npm|7.0.15|
+|Nuxt|2.14.12|
+|Vue|2.6.12|
+|Vuetify|2.4.2|
+|GitHubAPI|v4|
+
 ## Build Setup
+```shell
+git clone https://github.com/taiga-tech/wedding-photo-nuxt/
 
-```bash
-# install dependencies
-$ npm install
+cd wedding-photo-nuxt
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+npm install
 
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+npm run dev
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## References
+- https://github.com/shershen08/vue-masonry/
+- https://github.com/taiga-tech/divingapp/
