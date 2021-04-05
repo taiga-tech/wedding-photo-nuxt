@@ -1,5 +1,7 @@
 # wedding-photop-app
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fd9db2c7-f75a-40ab-9bcd-18c4774adb8b/deploy-status)](https://app.netlify.com/sites/brave-saha-478b20/deploys)
+
 <!-- ## Usage -->
 
 ## Dependency
