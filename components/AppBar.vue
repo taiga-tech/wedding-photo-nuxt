@@ -46,7 +46,11 @@
 </template>
 
 <script>
+import AuthComputed from '~/assets/mixins/AuthComputed.js'
+
 export default {
+  mixins: [AuthComputed],
+
   data() {
     return {
       drawer: false,
@@ -69,15 +73,6 @@ export default {
       ],
       title: 'weddingphoto',
     }
-  },
-
-  computed: {
-    user() {
-      return this.$store.getters['auth/user']
-    },
-    check() {
-      return this.$store.getters['auth/check']
-    },
   },
 
   methods: {

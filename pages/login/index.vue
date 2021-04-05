@@ -1,12 +1,14 @@
 <template>
   <v-container>
     <v-card dark>
-      <v-alert v-if="error" outlined type="error">{{ error.message }}</v-alert>
+      <app-alert :error="error" />
+
       <v-card-title>ログイン</v-card-title>
+
       <v-card-text>
-        <v-text-field v-model="user.login_id" name="name" label="login_id" />
+        <v-text-field v-model="form.login_id" name="name" label="login_id" />
         <v-text-field
-          v-model="user.password"
+          v-model="form.password"
           label="password"
           type="password"
           name="password"
@@ -18,38 +20,33 @@
 </template>
 
 <script>
+import AuthComputed from '~/assets/mixins/AuthComputed.js'
+
 export default {
+  mixins: [AuthComputed],
+
   middleware: 'logined_user',
 
   data() {
     return {
       error: null,
-      user: {
+      form: {
         login_id: '',
         password: '',
       },
     }
   },
 
-  computed: {
-    check() {
-      return this.$store.getters['auth/check']
-    },
-    authUser() {
-      return this.$store.getters['auth/user']
-    },
-  },
-
   methods: {
     async login() {
       await this.$store
-        .dispatch('auth/login', this.user)
+        .dispatch('auth/login', this.form)
         .then(() => {
-          this.$router.push(`/room/${this.authUser.id}`)
+          this.$router.push(`/room/${this.user.id}`)
         })
-        .catch((e) => {
-          console.error(e)
-          this.error = e
+        .catch((err) => {
+          console.error(err)
+          this.error = err
         })
     },
   },
