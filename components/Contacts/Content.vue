@@ -14,12 +14,20 @@
         {{ data.email }}
       </v-list-item-content>
     </v-list-item>
+
     <v-list-item>
       <v-list-item-content>
         <v-list-item-title class="label">お問い合わせ内容</v-list-item-title>
-        <v-list-item-content class="content" style="font-size: 14px">{{
-          data.message
-        }}</v-list-item-content>
+        <v-list-item-content
+          class="content"
+          style="
+            font-size: 14px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+          "
+          >{{ data.message }}</v-list-item-content
+        >
       </v-list-item-content>
     </v-list-item>
   </v-list>
@@ -28,10 +36,7 @@
 <script>
 export default {
   props: {
-    data: {
-      type: Object,
-      default: null,
-    },
+    data: { type: Object, default: null },
   },
 }
 </script>

@@ -24,8 +24,6 @@
 
         <v-stepper-items>
           <v-stepper-content step="1">
-            <!-- <contact-form :data="data" :rules="rules" /> -->
-
             <v-card>
               <v-card-title>お問い合わせ</v-card-title>
               <v-card-subtitle>
@@ -112,7 +110,7 @@
               </v-row>
             </v-alert>
 
-            <contact-show :data="data" />
+            <contacts-show :data="data" />
 
             <v-row v-if="error.status" dense class="mt-1">
               <v-col><v-btn block @click="steps = 1"> 戻る </v-btn></v-col>
@@ -123,7 +121,7 @@
           </v-stepper-content>
 
           <v-stepper-content step="3">
-            <contact-sucsess :data="data" />
+            <contacts-sucsess :data="data" />
             <v-row class="mt-1" dense
               ><v-col
                 ><v-btn block to="/" color="primary">トップへ戻る</v-btn></v-col
@@ -140,11 +138,12 @@
 import Meta from '~/assets/mixins/meta.js'
 
 export default {
-  components: {
-    // ContactForm: () => import('~/components/Contacts/ContactForm'),
-    ContactShow: () => import('~/components/Contacts/ContactShow'),
-    ContactSucsess: () => import('~/components/Contacts/ContactSucsess'),
-  },
+  // components: {
+  //   // ContactForm: () => import('~/components/Contacts/ContactForm'),
+  //   ContactShow: () => import('~/components/Contacts/ContactShow'),
+  //   ContactSucsess: () => import('~/components/Contacts/ContactSucsess'),
+  // },
+
   mixins: [Meta],
 
   data() {
@@ -200,9 +199,10 @@ export default {
       contacts.append('message', this.data.message)
       const response = await this.$axios
         // .$post('/', contacts)
-        .$post(window.location.origin, contacts)
         // .$post('localhost', contacts) // error handling
-        .catch(() => {
+        .$post(window.location.origin, contacts)
+        .catch((err) => {
+          console.error(err)
           this.error = {
             status: false,
             message: `メッセージ送信に失敗しました もう一度最初からお願いします`,

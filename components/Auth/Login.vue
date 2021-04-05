@@ -8,7 +8,12 @@
         <v-alert v-if="error" outlined type="error">{{ error }}</v-alert>
         <v-card-title>ログイン</v-card-title>
         <v-card-text>
-          <v-text-field v-model="user.login_id" name="name" label="login_id" />
+          <v-text-field
+            v-model="user.login_id"
+            autofocus
+            name="name"
+            label="login_id"
+          />
           <v-text-field
             v-model="user.password"
             label="password"
