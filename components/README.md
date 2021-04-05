@@ -1,7 +1,15 @@
 # COMPONENTS
 
-**This directory is not required, you can delete it if you don't want to use it.**
-
-The components directory contains your Vue.js Components.
-
-_Nuxt.js doesn't supercharge these components._
+```shell
+.
+├── AppAlert.vue     # Globally available alert component
+├── AppBar.vue       # Child component of "~/layouts/default.vue"
+├── Auth
+│   └── Login.vue   # Child component of "~/layouts/default.vue"
+├── Contacts         # Child component of "~/pages/info/contact.vue"
+│   ├── Content.vue
+│   ├── Show.vue
+│   └── Sucsess.vue
+└── Room
+     └── New.vue     # Child component of "~/pages/room/_roomId.vue"
+```
