@@ -2,7 +2,7 @@
 
 ```shell
 .
-├── index.vue        # TopPage Template
+├── index.vue       # TopPage Template
 ├── demo
 │   └── index.vue   # DemoPage Template
 ├── info
@@ -13,5 +13,5 @@
 ├── maintenance
 │   └── index.vue   # MaintenancePage Template
 └── room
-     └── _roomId.vue  # RoomNumberPage Templage
+    └── _roomId.vue # RoomNumberPage Templage
 ```
