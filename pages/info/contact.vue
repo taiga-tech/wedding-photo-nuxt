@@ -7,7 +7,7 @@
             お問い合わせ
           </v-stepper-step>
 
-          <v-divider></v-divider>
+          <v-divider />
 
           <v-stepper-step
             :complete="steps > 2"
@@ -17,7 +17,7 @@
             お問い合わせ内容確認
           </v-stepper-step>
 
-          <v-divider></v-divider>
+          <v-divider />
 
           <v-stepper-step step="3"> 送信完了 </v-stepper-step>
         </v-stepper-header>
@@ -135,16 +135,10 @@
 </template>
 
 <script>
-import Meta from '~/assets/mixins/meta.js'
+// import Meta from '~/assets/mixins/meta.js'
 
 export default {
-  // components: {
-  //   // ContactForm: () => import('~/components/Contacts/ContactForm'),
-  //   ContactShow: () => import('~/components/Contacts/ContactShow'),
-  //   ContactSucsess: () => import('~/components/Contacts/ContactSucsess'),
-  // },
-
-  mixins: [Meta],
+  // mixins: [Meta],
 
   data() {
     return {
