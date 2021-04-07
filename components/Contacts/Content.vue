@@ -40,11 +40,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.content {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-</style>
