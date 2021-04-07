@@ -5,7 +5,7 @@
     </v-btn>
     <v-dialog v-model="openLogin" width="500">
       <v-card dark>
-        <v-alert v-if="error" outlined type="error">{{ error }}</v-alert>
+        <app-alert :error="error" />
         <v-card-title>ログイン</v-card-title>
         <v-card-text>
           <v-text-field
@@ -46,14 +46,15 @@ export default {
 
   methods: {
     async login() {
+      this.error = null
       await this.$store
         .dispatch('auth/login', this.form)
         .then(() => {
           this.$router.push(`/room/${this.user.id}`)
         })
-        .catch((e) => {
-          console.error(e)
-          this.error = e
+        .catch((err) => {
+          console.error(err)
+          this.error = err
         })
     },
   },
