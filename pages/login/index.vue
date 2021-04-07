@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card dark>
+    <v-card>
       <app-alert :error="error" />
 
       <v-card-title>ログイン</v-card-title>
@@ -39,6 +39,7 @@ export default {
 
   methods: {
     async login() {
+      this.error = null
       await this.$store
         .dispatch('auth/login', this.form)
         .then(() => {
