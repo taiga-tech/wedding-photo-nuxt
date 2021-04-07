@@ -26,7 +26,7 @@ Comming soon...
 
 ## Dependency
 
-||Version|
+|language|Version|
 |---|---|
 |Mac OS|Catalina 10.15.7|
 |Node|v15.4.0|
