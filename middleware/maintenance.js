@@ -5,7 +5,8 @@ export default function ({ redirect, route }) {
     isMaintenance === 'true' &&
     (route.name === 'index' ||
       route.name === 'info' ||
-      route.name === 'info-contact')
+      route.name === 'info-contact' ||
+      route.name === 'demo')
   ) {
     return false
   } else if (isMaintenance === 'true' && route.name !== 'maintenance') {
