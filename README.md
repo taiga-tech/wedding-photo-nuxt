@@ -1,10 +1,13 @@
 # wedding-photop-app
 
 <p>
-  <a href="https://app.netlify.com/sites/brave-saha-478b20/deploys">
+  <a href="https://app.netlify.com/sites/brave-saha-478b20/deploys/">
     <img src="https://api.netlify.com/api/v1/badges/fd9db2c7-f75a-40ab-9bcd-18c4774adb8b/deploy-status" alt="Netlify Status">
-    </a>
-  <a href="https://github.com/taiga-tech/wedding-photo-nuxt/blob/master/LICENSE">
+  </a>
+  <a href="https://app.circleci.com/pipelines/github/taiga-tech/wedding-photo-nuxt/">
+    <img src="https://circleci.com/gh/taiga-tech/wedding-photo-nuxt.svg?style=shield&circle-token=07c0acf41ec80850dc4f9530ac9dd72d1081f646" alt="CircleCI">
+  </a>
+  <a href="https://github.com/taiga-tech/wedding-photo-nuxt/blob/master/LICENSE/">
     <img src="https://img.shields.io/github/license/taiga-tech/wedding-photo-nuxt" alt="MIT License">
   </a>
 </p>
@@ -58,4 +61,4 @@ npm run dev
 
 ## License
 
-- [MIT](https://github.com/taiga-tech/wedding-photo-nuxt/blob/master/LICENSE)
+- [MIT](https://github.com/taiga-tech/wedding-photo-nuxt/blob/master/LICENSE/)
