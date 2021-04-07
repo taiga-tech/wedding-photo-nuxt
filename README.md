@@ -1,19 +1,25 @@
 # wedding-photop-app
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fd9db2c7-f75a-40ab-9bcd-18c4774adb8b/deploy-status)](https://app.netlify.com/sites/brave-saha-478b20/deploys)
-[![MIT License](https://img.shields.io/github/license/taiga-tech/wedding-photo-nuxt)](https://github.com/taiga-tech/wedding-photo-nuxt/blob/master/LICENSE)
+<p>
+  <a href="https://app.netlify.com/sites/brave-saha-478b20/deploys">
+    <img src="https://api.netlify.com/api/v1/badges/fd9db2c7-f75a-40ab-9bcd-18c4774adb8b/deploy-status" alt="Netlify Status">
+    </a>
+  <a href="https://github.com/taiga-tech/wedding-photo-nuxt/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/taiga-tech/wedding-photo-nuxt" alt="MIT License">
+  </a>
+</p>
 
 ## Description
 
-Add later...
+Comming soon...
 
 **Demo:**
 
-Add gif later...
+Comming soon...
 
 ## Usage
 
-Add later...
+Comming soon...
 
 ## Dependency
 
