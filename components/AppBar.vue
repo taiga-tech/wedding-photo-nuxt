@@ -18,19 +18,33 @@
         </v-list-item>
       </v-list>
 
-      <v-spacer />
+      <template v-slot:append>
+        <div align="right" class="ma-1">
+          <v-btn
+            v-for="(sns, i) in socials"
+            :key="i"
+            icon
+            :color="sns.color"
+            :href="sns.to"
+            target="_blank"
+            rel="noopener"
+          >
+            <v-icon medium>mdi-{{ sns.icon }}</v-icon>
+          </v-btn>
+        </div>
+        <v-divider v-if="check" />
+        <v-list v-if="check">
+          <v-list-item color="pink" input-value="true" @click="logout">
+            <v-list-item-action>
+              <v-icon>mdi-account-arrow-right-outline</v-icon>
+            </v-list-item-action>
 
-      <v-list>
-        <v-list-item v-if="check" @click="logout">
-          <v-list-item-action>
-            <v-icon>mdi-account-arrow-right-outline</v-icon>
-          </v-list-item-action>
-
-          <v-list-item-content>
-            <v-list-item-title>ログアウト</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
+            <v-list-item-content>
+              <v-list-item-title>ログアウト</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </template>
     </v-navigation-drawer>
 
     <v-app-bar clipped-left fixed app dense flat>
@@ -39,8 +53,8 @@
       <v-toolbar-title v-text="user ? user.name : title" />
 
       <v-spacer />
-
       <v-btn v-if="!check" to="/login">ログイン</v-btn>
+      <v-btn icon mediam><v-icon>mdi-help-circle-outline</v-icon></v-btn>
     </v-app-bar>
   </div>
 </template>
@@ -57,11 +71,16 @@ export default {
       items: [
         {
           icon: 'mdi-apps',
-          title: 'ホーム',
+          title: 'トップ',
           to: '/',
         },
         {
-          icon: 'mdi-phone',
+          icon: 'mdi-alpha-d-box-outline',
+          title: 'デモ',
+          to: '/demo/',
+        },
+        {
+          icon: 'mdi-email',
           title: 'お問い合わせ',
           to: '/info/contact/',
         },
@@ -69,6 +88,34 @@ export default {
           icon: 'mdi-github',
           title: '作成者について',
           to: '/info/',
+        },
+        { icon: 'mdi-note', title: '利用規約', to: '/info/terms/' },
+        {
+          icon: 'mdi-note',
+          title: 'プライバシーポリシー',
+          to: '/info/privacy/',
+        },
+      ],
+      socials: [
+        {
+          icon: 'qrcode',
+          to: 'https://taiga-tech.tk/',
+          color: '',
+        },
+        {
+          icon: 'github',
+          to: 'https://github.com/taiga-tech/',
+          color: 'purple',
+        },
+        {
+          icon: 'alpha-w',
+          to: '',
+          color: '#4fcce3',
+        },
+        {
+          icon: 'twitter',
+          to: 'https://twitter.com/Taiga_dev/',
+          color: 'primary',
         },
       ],
       title: 'weddingphoto',
