@@ -1,18 +1,20 @@
 <template>
   <v-alert
+    v-if="error"
     :value="error ? true : false"
     type="error"
     outlined
-    transition="slide-y-transition"
     dismissible
-    >{{ error }}
+    transition="slide-y-transition"
+    style="margin: 0 10px"
+    >{{ error.message }}
   </v-alert>
 </template>
 
 <script>
 export default {
   props: {
-    error: { type: Object, default: null },
+    error: { type: Error, default: null },
   },
 }
 </script>
