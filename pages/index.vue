@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div style="width: 100%; height: 100%" align="center" justify="center">
+    <div>
       <div>
         <auth-login v-if="!check"></auth-login>
         <div v-if="check">
@@ -11,6 +11,7 @@
         </div>
       </div>
     </div>
+    <app-footer />
   </v-container>
 </template>
 
