@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="height: 100%" class="d-flex align-center">
     <div class="mx-auto" style="max-width: 940px">
       <v-stepper ref="contact" v-model="steps">
         <v-stepper-header>
