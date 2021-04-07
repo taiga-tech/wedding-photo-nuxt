@@ -42,6 +42,8 @@ git clone https://github.com/taiga-tech/wedding-photo-nuxt/
 
 cd wedding-photo-nuxt
 
+# Command to set environment variables
+
 npm install
 
 npm run dev
