@@ -3,8 +3,12 @@ export const state = () => ({
   post: null,
 })
 
+export const getters = {
+  index: (state) => (state.posts ? state.posts : null),
+  post: (state) => (state.post ? state.post : null),
+}
+
 export const mutations = {
-  // setError(state, data) {},
   setPosts(state, data) {
     state.posts = data
   },
@@ -23,7 +27,21 @@ export const actions = {
       })
       .catch((err) => {
         console.error(err)
-        commit('setError', err)
+        throw new Error('画像取得に失敗しました ページを再読み込みしてください')
+      })
+  },
+
+  async store({ commit }, data) {
+    await this.$axios
+      .post('/api/posts', data)
+      .then((response) => {
+        commit('setPost', response.data)
+      })
+      .catch((err) => {
+        console.error(err)
+        throw new Error(
+          '送信に失敗しました ページを再読み込みしてもう一度お試しください'
+        )
       })
   },
 
@@ -35,11 +53,7 @@ export const actions = {
       })
       .catch((err) => {
         console.error(err)
+        throw new Error(err)
       })
   },
-}
-
-export const getters = {
-  index: (state) => (state.posts ? state.posts : null),
-  show: (state) => (state.post ? state.post : null),
 }

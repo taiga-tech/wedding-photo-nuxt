@@ -2,6 +2,11 @@ export const state = () => ({
   authUser: null,
 })
 
+export const getters = {
+  check: (state) => !!state.authUser,
+  user: (state) => (state.authUser ? state.authUser : null),
+}
+
 export const mutations = {
   setUser(state, data) {
     state.authUser = data
@@ -10,22 +15,19 @@ export const mutations = {
 
 export const actions = {
   async login({ commit }, data) {
-    const response = await this.$axios
-      .$post('/api/login', data)
-      .catch((err) => {
-        console.log(err)
-        throw new Error(err)
+    await this.$axios
+      .post('/api/login', data)
+      .then((response) => {
+        commit('setUser', response.data)
       })
-
-    commit('setUser', response)
+      .catch((err) => {
+        console.error(err)
+        throw new Error('ログインに失敗しました もう一度お試しください')
+      })
   },
+
   async logout({ commit }) {
     await this.$axios.post('/api/logout')
     commit('setUser', null)
   },
-}
-
-export const getters = {
-  check: (state) => !!state.authUser,
-  user: (state) => (state.authUser ? state.authUser : null),
 }
