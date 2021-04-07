@@ -8,23 +8,27 @@
 
           <v-textarea v-model="message" label="message" />
 
+          <div>
+            <v-img
+              v-for="(img, i) in previews"
+              :key="i"
+              :src="img.path"
+              :aspect-ratio="img.aspect"
+              width="30%"
+            />
+          </div>
+
           <v-file-input
+            v-model="photos"
+            label="images"
             required
             multiple
             counter
             show-size
-            hide-input
-            truncate-length="15"
+            prepend-icon="mdi-camera"
             accept=".jpg,image/jpeg"
             @change="fileChange"
           ></v-file-input>
-
-          <v-img
-            v-for="(img, i) in previews"
-            :key="i"
-            :src="img"
-            width="30%"
-          ></v-img>
 
           <v-btn @click="submit">送信</v-btn>
         </v-form>
@@ -41,33 +45,29 @@
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon>mdi-plus</v-icon>
+        <v-icon>mdi-camera</v-icon>
       </v-btn>
     </template>
   </v-dialog>
 </template>
 
 <script>
+import AuthComputed from '~/assets/mixins/AuthComputed.js'
+
 export default {
+  mixins: [AuthComputed],
+
   middleware: 'not_logined_user',
 
   data() {
     return {
+      loading: false,
       open: false,
       nickname: '',
-      message: '',
+      message: null,
       photos: [],
       previews: [],
     }
-  },
-
-  computed: {
-    check() {
-      return this.$store.getters['auth/check']
-    },
-    user() {
-      return this.$store.getters['auth/user']
-    },
   },
 
   mounted() {
@@ -75,69 +75,66 @@ export default {
   },
 
   methods: {
+    fileChange() {
+      for (let i = 0; i < this.photos.length; i++) {
+        if (!this.photos[i].type.match('image.*')) {
+          this.reset()
+          return false
+        }
+        const image = new Image()
+        const reader = new FileReader()
+        reader.onload = () => {
+          image.src = reader.result
+          image.onload = () => {
+            const asp = image.naturalWidth / image.naturalHeight
+            this.previews.push({ path: image.src, aspect: asp })
+          }
+        }
+        reader.readAsDataURL(this.photos[i])
+      }
+    },
+
     async submit() {
-      this.$parent.previews = this.previews
       this.open = false
+      this.loading = true
+      this.$parent.error = null
+      this.$parent.previews = this.previews
       const formData = new FormData()
-      formData.append('nickname', this.nickname)
       localStorage.setItem('nickname', this.nickname)
+      formData.append('nickname', this.nickname)
       formData.append('message', this.message)
       if (this.photos.length !== 0) {
         for (let i = 0; i < this.photos.length; i++) {
           formData.append(`files[${i}][photo]`, this.photos[i])
+          formData.append(`aspect[${i}]`, this.previews[i].aspect)
         }
       }
 
-      this.formReset()
-
-      await this.$axios
-        .post('/api/posts', formData)
-        .then((response) => {
-          this.post = response.data
-        })
-        .catch((err) => {
-          console.log(err)
-          this.$parent.error = err
-          this.$parent.previews = []
+      await this.$store
+        .dispatch('room/store', formData)
+        .then(() => {
+          this.loading = false
+          this.$parent.getPhotos()
           this.formReset()
         })
-    },
-
-    fileChange(event) {
-      const fileList = event
-      if (fileList.length + this.photos.length > 6) {
-        this.reset()
-        alert(`画像は最大6枚までです`)
-        return false
-      }
-      for (let i = 0; i < fileList.length; i++) {
-        if (!fileList[i].type.match('image.*')) {
-          this.reset()
-          return false
-        }
-        const reader = new FileReader()
-        reader.onload = (e) => {
-          this.previews.push(e.target.result)
-        }
-        reader.readAsDataURL(fileList[i])
-      }
-      if (fileList.length !== 0) {
-        this.previews = []
-        this.photos = Array.from(fileList)
-      }
+        .catch((err) => {
+          this.$parent.error = err
+          console.error(err)
+          this.$parent.previews = []
+        })
     },
 
     formReset() {
       this.message = null
-      this.previews = []
       this.photos = []
+      this.previews = []
+      this.$parent.previews = []
     },
 
     reset() {
+      this.photos = []
       this.previews = []
       this.$parent.previews = []
-      this.photos = []
-      this.$el.querySelector('input[type="file"]').value = null
     },
   },
 }
