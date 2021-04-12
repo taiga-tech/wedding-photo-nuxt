@@ -7,7 +7,7 @@
     dismissible
     transition="slide-y-transition"
     style="margin: 0 10px"
-    >{{ error.message }}
+    >{{ error }}
   </v-alert>
 </template>
 
