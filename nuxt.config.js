@@ -44,6 +44,19 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  pwa: {
+    manifest: {
+      name: 'WPA',
+      short_name: 'WPA',
+      lang: 'ja',
+      useWebmanifestExtension: false,
+      background_color: '#000',
+      theme_color: '#000',
+      viewport: 'width=device-width,initial-scale=1.0,minimum-scale=1.0',
+      description: 'description',
+    },
+  },
+
   router: { middleware: 'maintenance' },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
