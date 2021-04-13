@@ -1,18 +1,42 @@
 <template>
   <v-dialog v-model="open" width="500">
     <v-card>
+      <v-toolbar dense flat>
+        <v-btn
+          v-if="localNickname"
+          icon
+          small
+          @click="cogNickname = !cogNickname"
+        >
+          <v-icon small>mdi-cog</v-icon>
+        </v-btn>
+        <v-spacer />
+        <v-btn :disabled="!valid" icon color="primary" @click="submit">
+          <v-icon>mdi-send</v-icon>
+        </v-btn>
+      </v-toolbar>
+
       <v-form v-model="valid" class="pa-4">
         <v-text-field
+          v-if="!localNickname || cogNickname"
           v-model="nickname"
-          label="nickname"
+          label="ニックネーム"
+          placeholder="名前を入力してください"
+          :autofocus="!localNickname"
           required
           :rules="rules.nickname"
+        />
+
+        <room-preview
+          v-if="previews.length !== 0"
+          :previews="previews"
+          :photos="photos"
         />
 
         <v-file-input
           v-model="photos"
           :rules="rules.photos"
-          label="Photos"
+          label="Photo"
           :counter="6"
           required
           multiple
@@ -22,17 +46,15 @@
           dense
           @change="fileChange"
           @click:clear="reset"
-        ></v-file-input>
-
-        <v-text-field v-model="message" label="message"> </v-text-field>
-
-        <room-preview
-          v-if="previews.length !== 0"
-          :previews="previews"
-          :photos="photos"
         />
 
-        <v-btn :disabled="!valid" block @click="submit">送信</v-btn>
+        <v-text-field
+          v-model="message"
+          :rules="rules.msg"
+          :counter="30"
+          label="メッセージ"
+          placeholder="メッセージを入力してください"
+        />
       </v-form>
     </v-card>
 
@@ -67,10 +89,17 @@ export default {
       loading: false,
       open: false,
       nickname: '',
-      message: null,
+      message: '',
       photos: [],
       previews: [],
+      cogNickname: false,
     }
+  },
+
+  computed: {
+    localNickname() {
+      return localStorage.getItem('nickname')
+    },
   },
 
   mounted() {
@@ -137,7 +166,7 @@ export default {
     },
 
     formReset() {
-      this.message = null
+      this.message = ''
       this.photos = []
       this.previews = []
       this.$parent.previews = []
