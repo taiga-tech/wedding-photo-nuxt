@@ -50,11 +50,22 @@
     <v-app-bar clipped-left fixed app dense flat>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
-      <v-toolbar-title v-text="user ? user.name : title" />
+      <nuxt-link
+        to="/"
+        class="text-decoration-none"
+        :style="$vuetify.theme.dark ? 'color: #fff' : 'color: #000'"
+      >
+        <v-toolbar-title v-text="user ? user.name : title" />
+      </nuxt-link>
 
       <v-spacer />
       <v-btn v-if="!check" to="/login">ログイン</v-btn>
-      <v-btn icon mediam><v-icon>mdi-help-circle-outline</v-icon></v-btn>
+      <v-btn icon midiam @click="openHelp = !openHelp">
+        <v-icon>mdi-help-circle-outline</v-icon>
+      </v-btn>
+      <v-dialog v-model="openHelp" width="800">
+        <info-help />
+      </v-dialog>
     </v-app-bar>
   </div>
 </template>
@@ -67,6 +78,7 @@ export default {
 
   data() {
     return {
+      openHelp: false,
       drawer: false,
       items: [
         {
