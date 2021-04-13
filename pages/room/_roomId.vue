@@ -15,6 +15,7 @@
           <v-btn icon color="pink" @click="openmodal = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
+          <v-app-bar-title>@{{ modalsrc.nickname }}</v-app-bar-title>
 
           <v-spacer />
 
@@ -30,17 +31,53 @@
           justify="center"
           class="pa-3"
         >
-          <img
+          <v-img
             :src="awsCdnUrl + modalsrc.photos[pullIndex].path + '?p=t'"
             alt=""
             width="90%"
+            class="align-end"
+            :aspect-ratio="modalsrc.photos[pullIndex].aspect"
             :style="`pending-bottom: ${
               modalsrc.photos[pullIndex].aspect * 100
             }`"
-          />
+          >
+            <v-card-text v-if="modalsrc.message">
+              {{ modalsrc.message }}
+            </v-card-text>
+          </v-img>
         </v-card>
-        <v-card-title>{{ user.name }}</v-card-title>
-        <v-card-subtitle>{{ user.login_id }}</v-card-subtitle>
+        <div v-if="modalsrc.photos.length >= 2">
+          <client-only>
+            <div
+              v-masonry="containerId"
+              transition-duration="0.1s"
+              item-selector=".item"
+              class="masonryWrap"
+            >
+              <div
+                v-for="(preview, i) in modalsrc.photos"
+                :key="preview.path"
+                v-masonry-tile="containerId"
+                class="item"
+              >
+                <v-card
+                  hover
+                  :loading="loading"
+                  :disabled="loading"
+                  @click="getPhoto(modalsrc, i)"
+                >
+                  <v-img
+                    :src="awsCdnUrl + preview.path + '?p=t'"
+                    :aspect-ratio="preview.aspect"
+                    :alt="preview.path"
+                    :width="width"
+                    class="fill-height"
+                  ></v-img>
+                </v-card>
+              </div>
+            </div>
+          </client-only>
+        </div>
       </v-card>
     </v-dialog>
 
@@ -84,8 +121,10 @@
               :alt="photo.created_at"
               :width="width"
               class="fill-height"
+              align="right"
               @load="refresh"
             >
+              <v-card-text>@{{ post.nickname }}</v-card-text>
               <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
                   <v-progress-circular
