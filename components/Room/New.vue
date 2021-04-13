@@ -1,39 +1,41 @@
 <template>
   <v-dialog v-model="open" width="500">
     <v-card>
-      <v-card-title>new</v-card-title>
-      <v-card-text>
-        <v-form class="pa-4">
-          <v-text-field v-model="nickname" label="nickname" required />
+      <v-form v-model="valid" class="pa-4">
+        <v-text-field
+          v-model="nickname"
+          label="nickname"
+          required
+          :rules="rules.nickname"
+        />
 
-          <v-textarea v-model="message" label="message" />
+        <v-file-input
+          v-model="photos"
+          :rules="rules.photos"
+          label="Photos"
+          :counter="6"
+          required
+          multiple
+          show-size
+          prepend-icon="mdi-camera"
+          accept=".jpg,image/jpeg"
+          dense
+          @change="fileChange"
+          @click:clear="reset"
+        ></v-file-input>
 
-          <div>
-            <v-img
-              v-for="(img, i) in previews"
-              :key="i"
-              :src="img.path"
-              :aspect-ratio="img.aspect"
-              width="30%"
-            />
-          </div>
+        <v-text-field v-model="message" label="message"> </v-text-field>
 
-          <v-file-input
-            v-model="photos"
-            label="images"
-            required
-            multiple
-            counter
-            show-size
-            prepend-icon="mdi-camera"
-            accept=".jpg,image/jpeg"
-            @change="fileChange"
-          ></v-file-input>
+        <room-preview
+          v-if="previews.length !== 0"
+          :previews="previews"
+          :photos="photos"
+        />
 
-          <v-btn @click="submit">送信</v-btn>
-        </v-form>
-      </v-card-text>
+        <v-btn :disabled="!valid" block @click="submit">送信</v-btn>
+      </v-form>
     </v-card>
+
     <template v-slot:activator="{ on, attrs }">
       <v-btn
         v-if="check"
@@ -53,9 +55,10 @@
 
 <script>
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
+import ValidateRules from '~/assets/mixins/ValidateRules.js'
 
 export default {
-  mixins: [AuthComputed],
+  mixins: [AuthComputed, ValidateRules],
 
   middleware: 'not_logined_user',
 
@@ -72,10 +75,16 @@ export default {
 
   mounted() {
     this.nickname = localStorage.getItem('nickname')
+      ? localStorage.getItem('nickname')
+      : null
   },
 
   methods: {
     fileChange() {
+      // とりあえずpreview === photosを実現、改善余地あり
+      if (this.photos.length === 0) {
+        this.reset()
+      }
       for (let i = 0; i < this.photos.length; i++) {
         if (!this.photos[i].type.match('image.*')) {
           this.reset()
@@ -91,6 +100,9 @@ export default {
           }
         }
         reader.readAsDataURL(this.photos[i])
+      }
+      if (this.photos.length !== 0) {
+        this.previews = []
       }
     },
 
