@@ -2,6 +2,21 @@
   <div>
     <v-navigation-drawer v-model="drawer" clipped floating app>
       <v-list>
+        <v-list-item v-if="check" :to="`/room/${user.id}/`" color="white">
+          <v-list-item-content>
+            <v-list-item-title class="title">
+              {{ user.name }}</v-list-item-title
+            >
+            <!-- <v-list-item-subtitle align="right">
+              部屋に入室する
+            </v-list-item-subtitle> -->
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+
+      <v-divider />
+
+      <v-list>
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
