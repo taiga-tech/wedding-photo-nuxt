@@ -137,8 +137,9 @@ export default {
   },
 
   env: {
-    BASE_URL: process.env.BASE_URL,
-    AWS_CDN_URL: process.env.AWS_CDN_URL, // awscloudfront url
+    BASE_URL: process.env.BASE_URL, // laravel api endpoint
+    AWS_CDN_URL: process.env.AWS_CDN_URL, // aws cloudfront url
     MAINTENANCE_MODE: process.env.MAINTENANCE_MODE, // true : false
+    GEOLONIA_TOKEN: process.env.GEOLONIA_TOKEN, // geolonia api token (https://app.geolonia.com/)
   },
 }
