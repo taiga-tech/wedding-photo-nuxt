@@ -53,6 +53,9 @@ npm run dev
 
 - https://github.com/shershen08/vue-masonry/
 - https://github.com/taiga-tech/divingapp/
+- https://github.com/geolonia/
+- https://github.com/geolonia/community-geocoder/
+- https://github.com/geolonia/midnight
 
 ## Author
 
