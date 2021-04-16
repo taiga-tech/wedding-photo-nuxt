@@ -2,8 +2,10 @@
   <v-container fluid>
     <app-alert :error="error" />
 
+    <demo-new ref="roomNew" />
+
     <v-dialog
-      v-if="modalData"
+      v-if="modalsrc"
       v-model="openmodal"
       fullscreen
       transition="dialog-bottom-transition"
@@ -13,6 +15,7 @@
           <v-btn icon color="pink" @click="openmodal = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
+          <v-app-bar-title>@{{ modalsrc.nickname }}</v-app-bar-title>
 
           <v-spacer />
 
@@ -28,10 +31,50 @@
           justify="center"
           class="pa-3"
         >
-          <img :src="modalData.photos[pullIndex].path" alt="" width="90%" />
+          <v-img
+            :src="awsCdnUrl + modalsrc.photos[pullIndex].path + '?p=t'"
+            alt=""
+            :aspect-ratio="modalsrc.photos[pullIndex].aspect"
+            width="90%"
+            class="align-end"
+          >
+            <v-card-text v-if="modalsrc.message">
+              {{ modalsrc.message }}
+            </v-card-text>
+          </v-img>
         </v-card>
-        <v-card-title>{{ modalData.user.name }}</v-card-title>
-        <v-card-subtitle>{{ modalData.user.login_id }}</v-card-subtitle>
+        <div v-if="modalsrc.photos.length >= 2">
+          <client-only>
+            <div
+              v-masonry="containerId"
+              transition-duration="0.1s"
+              item-selector=".item"
+              class="masonryWrap"
+            >
+              <div
+                v-for="(preview, i) in modalsrc.photos"
+                :key="preview.path"
+                v-masonry-tile="containerId"
+                class="item"
+              >
+                <v-card
+                  hover
+                  :loading="loading"
+                  :disabled="loading"
+                  @click="getPhoto(modalsrc, i)"
+                >
+                  <v-img
+                    :src="awsCdnUrl + preview.path + '?p=t'"
+                    :aspect-ratio="preview.aspect"
+                    :alt="preview.path"
+                    :width="width"
+                    class="fill-height"
+                  />
+                </v-card>
+              </div>
+            </div>
+          </client-only>
+        </div>
       </v-card>
     </v-dialog>
 
@@ -52,9 +95,10 @@
             <v-img
               :src="preview.path"
               :alt="preview.path"
+              :aspect-ratio="preview.aspect"
               :width="width"
               class="fill-height"
-            ></v-img>
+            />
           </v-card>
         </div>
 
@@ -68,13 +112,15 @@
             @click="getPhoto(post, index)"
           >
             <v-img
-              :src="photo.path"
-              lazy-src="https://picsum.photos/id/11/100/60"
+              :src="awsCdnUrl + photo.path + '?p=t'"
               :alt="photo.created_at"
+              :aspect-ratio="photo.aspect"
               :width="width"
               class="fill-height"
+              align="right"
               @load="refresh"
             >
+              <v-card-text>@{{ post.nickname }}</v-card-text>
               <template v-slot:placeholder>
                 <v-row class="fill-height ma-0" align="center" justify="center">
                   <v-progress-circular
@@ -102,9 +148,18 @@ export default {
       containerId: 'containerId',
       previews: [],
       openmodal: false,
-      modalData: null,
+      modalsrc: null,
       posts,
     }
+  },
+
+  computed: {
+    loading() {
+      return this.$refs.roomNew.loading
+    },
+    awsCdnUrl() {
+      return process.env.AWS_CDN_URL
+    },
   },
 
   methods: {
@@ -114,7 +169,7 @@ export default {
 
     getPhoto(post, index) {
       this.openmodal = true
-      this.modalData = post
+      this.modalsrc = post
       this.pullIndex = index
     },
   },
