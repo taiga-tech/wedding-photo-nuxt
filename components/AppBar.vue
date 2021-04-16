@@ -55,7 +55,10 @@
         class="text-decoration-none"
         :style="$vuetify.theme.dark ? 'color: #fff' : 'color: #000'"
       >
-        <v-toolbar-title v-text="user ? user.name : title" />
+        <v-toolbar-title>
+          <v-avatar tile><v-img src="/icon.png"></v-img></v-avatar>
+          <!-- {{ user ? user.name : title }} -->
+        </v-toolbar-title>
       </nuxt-link>
 
       <v-spacer />
