@@ -45,6 +45,9 @@ export default {
   },
 
   pwa: {
+    icon: {
+      fileName: 'icon2.png',
+    },
     manifest: {
       name: 'WPA',
       short_name: 'WPA',
