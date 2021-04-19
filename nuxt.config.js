@@ -4,6 +4,7 @@ require('dotenv').config()
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
   ssr: false,
+  target: 'static',
 
   server: { host: '0', port: 3000 },
 
@@ -13,8 +14,8 @@ export default {
       lang: 'ja',
       prefix: 'og: http://ogp.me/ns#',
     },
-    titleTemplate: '%s - wedding-photop-app',
-    title: 'wedding-photop-app',
+    titleTemplate: '%sWPA',
+    title: 'WPA',
     meta: [
       { charset: 'utf-8' },
       {
@@ -24,7 +25,7 @@ export default {
       { hid: 'description', name: 'description', content: '' },
 
       // global OGP
-      { hid: 'og:title', property: 'og:title', content: 'wedding-photop-app' },
+      { hid: 'og:title', property: 'og:title', content: 'WPA' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       // { hid: 'og:url', property: 'og:url', content: '' },
       // {
@@ -32,7 +33,7 @@ export default {
       //   property: 'og:image',
       //   content: '',
       // },
-      { property: 'og:site_name', content: 'wedding-photop-app' },
+      { property: 'og:site_name', content: 'WPA' },
       {
         hid: 'og:description',
         property: 'og:description',
@@ -96,6 +97,8 @@ export default {
     '@nuxtjs/proxy',
 
     '@nuxtjs/dotenv',
+
+    'nuxt-user-agent',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
