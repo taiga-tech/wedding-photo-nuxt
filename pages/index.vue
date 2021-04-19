@@ -20,5 +20,9 @@ import AuthComputed from '~/assets/mixins/AuthComputed.js'
 
 export default {
   mixins: [AuthComputed],
+  // https://insta-window.studio.site/
+  head() {
+    return { title: null }
+  },
 }
 </script>
