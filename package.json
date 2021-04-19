@@ -2,6 +2,11 @@
   "name": "wedding-photop-app",
   "version": "1.0.0",
   "private": true,
+  "license" : "MIT",
+  "author": {
+		"name": "taiga-tech",
+		"url": "https://github.com/taiga-tech/"
+	},
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
