@@ -2,6 +2,8 @@
   <v-container fluid>
     <app-alert :error="error" />
 
+    <demo-info />
+
     <demo-new ref="roomNew" />
 
     <v-dialog
@@ -18,10 +20,6 @@
           <v-app-bar-title>@{{ modalsrc.nickname }}</v-app-bar-title>
 
           <v-spacer />
-
-          <v-toolbar-items>
-            <v-btn text color="primary"> Save </v-btn>
-          </v-toolbar-items>
         </v-app-bar>
 
         <v-card
@@ -32,8 +30,8 @@
           class="pa-3"
         >
           <v-img
-            :src="awsCdnUrl + modalsrc.photos[pullIndex].path + '?p=t'"
-            alt=""
+            :src="conversion(awsCdnUrl, modalsrc.photos[pullIndex].path)"
+            :alt="modalsrc.photos[pullIndex].path"
             :aspect-ratio="modalsrc.photos[pullIndex].aspect"
             width="90%"
             class="align-end"
@@ -43,6 +41,7 @@
             </v-card-text>
           </v-img>
         </v-card>
+
         <div v-if="modalsrc.photos.length >= 2">
           <client-only>
             <div
@@ -52,8 +51,8 @@
               class="masonryWrap"
             >
               <div
-                v-for="(preview, i) in modalsrc.photos"
-                :key="preview.path"
+                v-for="(photo, i) in modalsrc.photos"
+                :key="photo.path"
                 v-masonry-tile="containerId"
                 class="item"
               >
@@ -64,9 +63,9 @@
                   @click="getPhoto(modalsrc, i)"
                 >
                   <v-img
-                    :src="awsCdnUrl + preview.path + '?p=t'"
-                    :aspect-ratio="preview.aspect"
-                    :alt="preview.path"
+                    :src="conversion(awsCdnUrl, photo.path)"
+                    :aspect-ratio="photo.aspect"
+                    :alt="photo.path"
                     :width="width"
                     class="fill-height"
                   />
@@ -85,20 +84,28 @@
         item-selector=".item"
         class="masonryWrap"
       >
-        <div
-          v-for="preview in previews"
-          :key="preview.path"
-          v-masonry-tile="containerId"
-          class="item"
-        >
-          <v-card hover :loading="loading" :disabled="loading">
+        <div v-for="post in sessionPosts" :key="post.creagted_at">
+          <v-card
+            v-for="(photo, index) in post.photos"
+            :key="index"
+            v-masonry-tile="containerId"
+            class="item"
+            hover
+            :loading="loading"
+            :disabled="loading"
+            @click="getPhoto(post, index)"
+          >
             <v-img
-              :src="preview.path"
-              :alt="preview.path"
-              :aspect-ratio="preview.aspect"
+              :src="photo.path"
+              :alt="photo.path"
+              :aspect-ratio="photo.aspect"
               :width="width"
               class="fill-height"
-            />
+              align="right"
+              @load="refresh"
+            >
+              <v-card-text>@{{ post.nickname }}</v-card-text>
+            </v-img>
           </v-card>
         </div>
 
@@ -112,7 +119,7 @@
             @click="getPhoto(post, index)"
           >
             <v-img
-              :src="awsCdnUrl + photo.path + '?p=t'"
+              :src="conversion(awsCdnUrl, photo.path)"
               :alt="photo.created_at"
               :aspect-ratio="photo.aspect"
               :width="width"
@@ -139,26 +146,27 @@
 
 <script>
 import posts from '~/assets/json/DemoData'
+import UaFilters from '~/assets/mixins/UaFilters'
 
 export default {
+  mixins: [UaFilters],
+
   data() {
     return {
       error: null,
       width: '100%',
       containerId: 'containerId',
-      previews: [],
       openmodal: false,
       modalsrc: null,
       posts,
+      sessionPosts: [],
+      pullIndex: null,
     }
   },
 
   computed: {
     loading() {
       return this.$refs.roomNew.loading
-    },
-    awsCdnUrl() {
-      return process.env.AWS_CDN_URL
     },
   },
 
@@ -172,6 +180,12 @@ export default {
       this.modalsrc = post
       this.pullIndex = index
     },
+  },
+
+  head() {
+    return {
+      title: 'デモ - ',
+    }
   },
 }
 </script>
