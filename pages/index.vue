@@ -27,7 +27,7 @@
       <div class="d-flex">
         <v-img
           :src="conversion(awsCdnUrl, 'img/top_demo_desktop.png')"
-          lazy-src="https://picsum.photos/id/11/100/60"
+          :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
           width="75%"
           contain
         >
@@ -42,7 +42,7 @@
         </v-img>
         <v-img
           :src="conversion(awsCdnUrl, 'img/top_demo_mobile.jpg')"
-          lazy-src="https://picsum.photos/id/11/100/60"
+          :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
           width="25%"
           aspect-ratio="0.48976926"
           contain
