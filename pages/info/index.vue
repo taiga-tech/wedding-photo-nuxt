@@ -58,7 +58,7 @@ export default {
         },
         {
           name: 'Twitter',
-          href: 'https://taiga-tech.tk/',
+          href: 'https://twitter.com/Taiga_dev/',
           icon: 'mdi-twitter',
           color: 'primary',
         },
