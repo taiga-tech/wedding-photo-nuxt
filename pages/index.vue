@@ -25,9 +25,24 @@
       </p>
 
       <div class="d-flex">
-        <v-img src="/img/top_demo_desktop.png" width="75%" contain></v-img>
         <v-img
-          src="/img/top_demo_mobile.jpg"
+          :src="conversion(awsCdnUrl, 'img/top_demo_desktop.png')"
+          lazy-src="https://picsum.photos/id/11/100/60"
+          width="75%"
+          contain
+        >
+          <template v-slot:placeholder>
+            <v-row class="fill-height ma-0" align="center" justify="center">
+              <v-progress-circular
+                indeterminate
+                color="green lighten-5"
+              ></v-progress-circular>
+            </v-row>
+          </template>
+        </v-img>
+        <v-img
+          :src="conversion(awsCdnUrl, 'img/top_demo_mobile.jpg')"
+          lazy-src="https://picsum.photos/id/11/100/60"
           width="25%"
           aspect-ratio="0.48976926"
           contain
@@ -42,9 +57,10 @@
 
 <script>
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
+import UaFilters from '~/assets/mixins/UaFilters'
 
 export default {
-  mixins: [AuthComputed],
+  mixins: [AuthComputed, UaFilters],
 
   head() {
     return { title: null }
