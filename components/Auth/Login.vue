@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-btn color="pink" large class="my-2" @click="openLogin = !openLogin">
-      <v-icon left>mdi-play</v-icon> ログインして写真を見る
+      <v-icon left>mdi-play</v-icon> ログインしてアルバムを開く
     </v-btn>
     <v-btn color="pink" outlined large to="/demo/" class="my-2">
       デモを体験する
