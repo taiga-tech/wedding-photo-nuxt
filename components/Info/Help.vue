@@ -1,55 +1,89 @@
 <template>
-  <v-stepper v-model="e1">
-    <v-stepper-header>
-      <v-stepper-step :complete="e1 > 1" step="1">
-        Name of step 1
-      </v-stepper-step>
+  <div>
+    <v-btn icon midiam @click="openHelp = !openHelp">
+      <v-icon>mdi-help-circle-outline</v-icon>
+    </v-btn>
+    <v-dialog v-model="openHelp" width="520" scrollable>
+      <v-card color="#13151a">
+        <v-btn icon absolute top right @click="openHelp = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+        <v-card-title>
+          <v-icon color="info" left>mdi-help-circle-outline</v-icon>
+          ヘルプ
+        </v-card-title>
 
-      <v-divider></v-divider>
+        <v-card-text>
+          <!-- <strong>
+            <u>このページでは、ログイン後の動作を再現しています。</u><br />
+            ※追加した写真は画面をリロードすると削除されます、ご注意ください。<br />
+            ※データの送信、保存は行わないため、安心してご使用ください。
+          </strong>
+          <br /><br /> -->
+          <br />
+          <v-card class="pa-1" color="#152535">
+            <strong><u>使い方</u></strong>
+            <ol>
+              <li><NuxtLink to="/login/">ログインする</NuxtLink></li>
+              <li>右下の<v-icon small>mdi-camera</v-icon>を押す</li>
+              <li>
+                フォームを開いたら真ん中の
+                <v-icon small>mdi-camera</v-icon>
+                を押し、写真(最大6枚)を選択する
+              </li>
+              <li>
+                右上の<v-icon small>mdi-send</v-icon
+                >を押すと写真を追加できます。
+              </li>
+            </ol>
+          </v-card>
+          <br />
+          不具合の報告や使い方の相談があればお問い合わせページまたは、Twitterよりご連絡ください。
+        </v-card-text>
 
-      <v-stepper-step :complete="e1 > 2" step="2">
-        Name of step 2
-      </v-stepper-step>
+        <v-card-actions>
+          <v-spacer />
 
-      <v-divider></v-divider>
+          <v-btn
+            color="green"
+            text
+            to="/info/contact/"
+            @click="openHelp = false"
+          >
+            お問い合わせ
+          </v-btn>
 
-      <v-stepper-step step="3"> Name of step 3 </v-stepper-step>
-    </v-stepper-header>
+          <v-btn
+            small
+            color="primary"
+            icon
+            href="https://twitter.com/Taiga_dev/"
+            rel="noopener"
+            target="_blank"
+          >
+            <v-icon>mdi-twitter</v-icon>
+          </v-btn>
 
-    <v-stepper-items>
-      <v-stepper-content step="1">
-        <v-card class="mb-12" color="grey lighten-1" height="500px"></v-card>
-
-        <v-btn color="primary" @click="e1 = 2"> Continue </v-btn>
-
-        <v-btn text> Cancel </v-btn>
-      </v-stepper-content>
-
-      <v-stepper-content step="2">
-        <v-card class="mb-12" color="grey lighten-1" height="500px"></v-card>
-
-        <v-btn color="primary" @click="e1 = 3"> Continue </v-btn>
-
-        <v-btn text> Cancel </v-btn>
-      </v-stepper-content>
-
-      <v-stepper-content step="3">
-        <v-card class="mb-12" color="grey lighten-1" height="500px"></v-card>
-
-        <v-btn color="primary" @click="e1 = 1"> Continue </v-btn>
-
-        <v-btn text> Cancel </v-btn>
-      </v-stepper-content>
-    </v-stepper-items>
-  </v-stepper>
+          <v-btn
+            small
+            icon
+            href="https://github.com/taiga-tech/wedding-photo-nuxt/"
+            rel="noopener"
+            target="_blank"
+            color="purple"
+          >
+            <v-icon>mdi-github</v-icon>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {
-      e1: 1,
-    }
+    return { openHelp: false }
   },
 }
 </script>
