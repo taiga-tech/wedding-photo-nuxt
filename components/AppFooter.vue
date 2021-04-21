@@ -36,8 +36,7 @@ export default {
   data() {
     return {
       links: [
-        { name: 'demo', to: '/demo/' },
-        { name: '使い方', to: '/info/help/' },
+        { name: '使い方', to: '/demo/' },
         { name: '作成者について', to: '/info/' },
         { name: 'お問い合わせ', to: '/info/contact/' },
         { name: '利用規約', to: '/info/terms/' },
