@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card max-width="500" class="mx-auto my-12">
+    <v-card max-width="500" class="mx-auto mt-3">
       <div align="center">
         <h1 class="py-12">
           <v-avatar>
