@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="open" width="520" persistent>
+    <v-dialog v-model="open" width="520" persistent scrollable>
       <v-card color="#13151a">
         <v-card-title>
           <v-icon color="info" left>mdi-alert-circle-outline</v-icon>
@@ -34,7 +34,9 @@
         </v-card-text>
 
         <v-card-actions>
-          <v-btn color="green" text to="/info/contact/"> お問い合わせ </v-btn>
+          <v-btn small color="green" text to="/info/contact/">
+            お問い合わせ
+          </v-btn>
           <v-btn
             small
             color="primary"
@@ -48,7 +50,7 @@
           <v-btn
             small
             icon
-            href="https://github.com/taiga-tech/"
+            href="https://github.com/taiga-tech/wedding-photo-nuxt/"
             rel="noopener"
             target="_blank"
             color="purple"
@@ -60,7 +62,7 @@
 
           <v-btn color="pink" @click="open = false">
             <v-icon>mdi-play</v-icon>
-            start
+            <span class="hidden-sm-and-down">start</span>
           </v-btn>
         </v-card-actions>
       </v-card>
