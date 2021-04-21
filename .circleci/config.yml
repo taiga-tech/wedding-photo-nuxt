@@ -15,7 +15,7 @@ commands:
       - restore_cache:
           keys:
             - node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
-            - node-deps-v1-
+            - node-deps-v1-{{ .Branch }}-
 
   install-packages:
     steps:
