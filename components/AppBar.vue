@@ -63,12 +63,7 @@
 
       <v-spacer />
       <v-btn v-if="!check" to="/login">ログイン</v-btn>
-      <v-btn icon midiam @click="openHelp = !openHelp">
-        <v-icon>mdi-help-circle-outline</v-icon>
-      </v-btn>
-      <v-dialog v-model="openHelp" width="800">
-        <info-help />
-      </v-dialog>
+      <info-help />
     </v-app-bar>
   </div>
 </template>
@@ -81,7 +76,6 @@ export default {
 
   data() {
     return {
-      openHelp: false,
       drawer: false,
       items: [
         {
