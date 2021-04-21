@@ -31,6 +31,7 @@
         >
           <v-img
             :src="conversion(awsCdnUrl, modalsrc.photos[pullIndex].path)"
+            :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
             :alt="modalsrc.photos[pullIndex].path"
             :aspect-ratio="modalsrc.photos[pullIndex].aspect"
             width="90%"
@@ -64,6 +65,7 @@
                 >
                   <v-img
                     :src="conversion(awsCdnUrl, photo.path)"
+                    :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
                     :aspect-ratio="photo.aspect"
                     :alt="photo.path"
                     :width="width"
@@ -97,6 +99,7 @@
           >
             <v-img
               :src="photo.path"
+              :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
               :alt="photo.path"
               :aspect-ratio="photo.aspect"
               :width="width"
@@ -120,6 +123,7 @@
           >
             <v-img
               :src="conversion(awsCdnUrl, photo.path)"
+              :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
               :alt="photo.created_at"
               :aspect-ratio="photo.aspect"
               :width="width"
