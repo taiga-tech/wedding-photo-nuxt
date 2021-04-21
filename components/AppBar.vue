@@ -89,11 +89,6 @@ export default {
           to: '/demo/',
         },
         {
-          icon: 'mdi-email',
-          title: 'お問い合わせ',
-          to: '/info/contact/',
-        },
-        {
           icon: 'mdi-github',
           title: '作成者について',
           to: '/info/',
@@ -103,6 +98,11 @@ export default {
           icon: 'mdi-note',
           title: 'プライバシーポリシー',
           to: '/info/privacy/',
+        },
+        {
+          icon: 'mdi-email',
+          title: 'お問い合わせ',
+          to: '/info/contact/',
         },
       ],
       socials: [
