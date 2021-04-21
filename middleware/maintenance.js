@@ -3,10 +3,11 @@ export default function ({ redirect, route }) {
 
   if (
     isMaintenance === 'true' &&
-    (route.name === 'index' ||
-      route.name === 'info' ||
-      route.name === 'info-contact' ||
-      route.name === 'demo')
+    route.name.match('index|info|demo')
+    // (route.name === 'index' ||
+    //   route.name === 'info' ||
+    //   route.name === 'info-contact' ||
+    //   route.name === 'demo')
   ) {
     return false
   } else if (isMaintenance === 'true' && route.name !== 'maintenance') {
