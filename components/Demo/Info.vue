@@ -37,25 +37,18 @@
           <v-btn small color="green" text to="/info/contact/">
             お問い合わせ
           </v-btn>
+
           <v-btn
+            v-for="(sns, i) in socials"
+            :key="i"
             small
-            color="primary"
+            :color="sns.color"
             icon
-            href="https://twitter.com/Taiga_dev/"
+            :href="sns.href"
             rel="noopener"
             target="_blank"
           >
-            <v-icon>mdi-twitter</v-icon>
-          </v-btn>
-          <v-btn
-            small
-            icon
-            href="https://github.com/taiga-tech/wedding-photo-nuxt/"
-            rel="noopener"
-            target="_blank"
-            color="purple"
-          >
-            <v-icon>mdi-github</v-icon>
+            <v-icon>mdi-{{ sns.icon }}</v-icon>
           </v-btn>
 
           <v-spacer />
@@ -71,9 +64,11 @@
 </template>
 
 <script>
+import socials from '~/assets/json/socials.json'
+
 export default {
   data() {
-    return { open: true }
+    return { open: true, socials }
   },
 }
 </script>
