@@ -14,17 +14,15 @@
         </v-card-title>
 
         <v-card-text>
-          <!-- <strong>
-            <u>このページでは、ログイン後の動作を再現しています。</u><br />
-            ※追加した写真は画面をリロードすると削除されます、ご注意ください。<br />
-            ※データの送信、保存は行わないため、安心してご使用ください。
-          </strong>
-          <br /><br /> -->
           <br />
           <v-card class="pa-1" color="#152535">
             <strong><u>使い方</u></strong>
             <ol>
-              <li><NuxtLink to="/login/">ログインする</NuxtLink></li>
+              <li>
+                <NuxtLink to="/login/" @click.native="openHelp = false"
+                  >ログインする</NuxtLink
+                >
+              </li>
               <li>右下の<v-icon small>mdi-camera</v-icon>を押す</li>
               <li>
                 フォームを開いたら真ん中の
@@ -54,25 +52,16 @@
           </v-btn>
 
           <v-btn
+            v-for="(sns, i) in socials"
+            :key="i"
             small
-            color="primary"
+            :color="sns.color"
             icon
-            href="https://twitter.com/Taiga_dev/"
+            :href="sns.href"
             rel="noopener"
             target="_blank"
           >
-            <v-icon>mdi-twitter</v-icon>
-          </v-btn>
-
-          <v-btn
-            small
-            icon
-            href="https://github.com/taiga-tech/wedding-photo-nuxt/"
-            rel="noopener"
-            target="_blank"
-            color="purple"
-          >
-            <v-icon>mdi-github</v-icon>
+            <v-icon>mdi-{{ sns.icon }}</v-icon>
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -81,9 +70,11 @@
 </template>
 
 <script>
+import socials from '~/assets/json/socials.json'
+
 export default {
   data() {
-    return { openHelp: false }
+    return { openHelp: false, socials }
   },
 }
 </script>
