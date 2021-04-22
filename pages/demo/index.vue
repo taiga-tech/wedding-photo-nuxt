@@ -145,6 +145,7 @@
         </div>
       </div>
     </client-only>
+    <app-footer />
   </v-container>
 </template>
 
