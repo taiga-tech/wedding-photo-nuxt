@@ -25,7 +25,7 @@
             :key="i"
             icon
             :color="sns.color"
-            :href="sns.to"
+            :href="sns.href"
             target="_blank"
             rel="noopener"
           >
@@ -44,6 +44,11 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
+        <v-list-item align="right">
+          <v-spacer />
+          &copy; 2021 Taiga Nakano
+        </v-list-item>
+        <v-list-item v-if="$ua.isFromSmartphone()"></v-list-item>
       </template>
     </v-navigation-drawer>
 
@@ -57,7 +62,6 @@
       >
         <v-toolbar-title>
           <v-avatar tile><v-img src="/icon.png"></v-img></v-avatar>
-          <!-- {{ user ? user.name : title }} -->
         </v-toolbar-title>
       </nuxt-link>
 
@@ -70,6 +74,7 @@
 
 <script>
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
+import socials from '~/assets/json/socials.json'
 
 export default {
   mixins: [AuthComputed],
@@ -105,28 +110,7 @@ export default {
           to: '/info/contact/',
         },
       ],
-      socials: [
-        {
-          icon: 'qrcode',
-          to: 'https://taiga-tech.tk/',
-          color: '',
-        },
-        {
-          icon: 'github',
-          to: 'https://github.com/taiga-tech/',
-          color: 'purple',
-        },
-        {
-          icon: 'alpha-w',
-          to: '',
-          color: '#4fcce3',
-        },
-        {
-          icon: 'twitter',
-          to: 'https://twitter.com/Taiga_dev/',
-          color: 'primary',
-        },
-      ],
+      socials,
       title: 'weddingphoto',
     }
   },
