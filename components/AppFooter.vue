@@ -20,7 +20,7 @@
           :key="i"
           icon
           :color="sns.color"
-          :href="sns.to"
+          :href="sns.href"
           target="_blank"
           rel="noopener"
         >
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import socials from '~/assets/json/socials.json'
+
 export default {
   data() {
     return {
@@ -42,28 +44,8 @@ export default {
         { name: 'プライバシーポリシー', to: '/info/privacy/' },
         { name: 'お問い合わせ', to: '/info/contact/' },
       ],
-      socials: [
-        {
-          icon: 'qrcode',
-          to: 'https://taiga-tech.tk/',
-          color: '',
-        },
-        {
-          icon: 'github',
-          to: 'https://github.com/taiga-tech/',
-          color: 'purple',
-        },
-        {
-          icon: 'alpha-w',
-          to: '',
-          color: '#4fcce3',
-        },
-        {
-          icon: 'twitter',
-          to: 'https://twitter.com/Taiga_dev/',
-          color: 'primary',
-        },
-      ],
+
+      socials,
     }
   },
 }
