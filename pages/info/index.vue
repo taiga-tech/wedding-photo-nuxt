@@ -46,7 +46,7 @@
 
       <v-card-text class="px-12">
         <v-btn
-          v-for="(sns, i) in snsList"
+          v-for="(sns, i) in socials"
           :key="i"
           block
           class="my-2"
@@ -56,7 +56,7 @@
           target="_blank"
           rel="noopener"
         >
-          <v-icon left>{{ sns.icon }}</v-icon>
+          <v-icon left>mdi-{{ sns.icon }}</v-icon>
           <b>{{ sns.name }}</b>
         </v-btn>
       </v-card-text>
@@ -67,6 +67,7 @@
 
 <script>
 import UaFilters from '~/assets/mixins/UaFilters'
+import socials from '~/assets/json/socials.json'
 
 export default {
   mixins: [UaFilters],
@@ -95,27 +96,7 @@ export default {
           about: '画像最適化処理 at AWS Lambda',
         },
       ],
-
-      snsList: [
-        {
-          name: 'ホームページ',
-          href: 'https://taiga-tech.tk/',
-          icon: 'mdi-qrcode',
-          color: '',
-        },
-        {
-          name: 'GitHub',
-          href: 'https://github.com/taiga-tech/',
-          icon: 'mdi-github',
-          color: 'purple',
-        },
-        {
-          name: 'Twitter',
-          href: 'https://twitter.com/Taiga_dev/',
-          icon: 'mdi-twitter',
-          color: 'primary',
-        },
-      ],
+      socials,
     }
   },
 }
