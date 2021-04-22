@@ -3,36 +3,28 @@
     <v-navigation-drawer v-model="drawer" clipped floating app>
       <v-list>
         <v-list-item
-          v-for="(item, i) in items"
+          v-for="(link, i) in links"
           :key="i"
-          :to="item.to"
+          :to="link.to"
           router
           exact
         >
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon>{{ link.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
+            <v-list-item-title v-text="link.title" />
           </v-list-item-content>
         </v-list-item>
       </v-list>
 
       <template v-slot:append>
         <div align="right" class="ma-1">
-          <v-btn
-            v-for="(sns, i) in socials"
-            :key="i"
-            icon
-            :color="sns.color"
-            :href="sns.href"
-            target="_blank"
-            rel="noopener"
-          >
-            <v-icon medium>mdi-{{ sns.icon }}</v-icon>
-          </v-btn>
+          <app-sns />
         </div>
+
         <v-divider v-if="check" />
+
         <v-list v-if="check">
           <v-list-item color="pink" input-value="true" @click="logout">
             <v-list-item-action>
@@ -48,6 +40,7 @@
           <v-spacer />
           &copy; 2021 Taiga Nakano
         </v-list-item>
+
         <v-list-item v-if="$ua.isFromSmartphone()"></v-list-item>
       </template>
     </v-navigation-drawer>
@@ -55,11 +48,7 @@
     <v-app-bar clipped-left fixed app dense flat>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
-      <nuxt-link
-        to="/"
-        class="text-decoration-none"
-        :style="$vuetify.theme.dark ? 'color: #fff' : 'color: #000'"
-      >
+      <nuxt-link to="/">
         <v-toolbar-title>
           <v-avatar tile><v-img src="/icon.png"></v-img></v-avatar>
         </v-toolbar-title>
@@ -74,45 +63,13 @@
 
 <script>
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
-import socials from '~/assets/json/socials.json'
+import links from '~/assets/json/Links.json'
 
 export default {
   mixins: [AuthComputed],
 
   data() {
-    return {
-      drawer: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'トップ',
-          to: '/',
-        },
-        {
-          icon: 'mdi-alpha-d-box-outline',
-          title: 'デモ',
-          to: '/demo/',
-        },
-        {
-          icon: 'mdi-github',
-          title: '作成者について',
-          to: '/info/',
-        },
-        { icon: 'mdi-note', title: '利用規約', to: '/info/terms/' },
-        {
-          icon: 'mdi-note',
-          title: 'プライバシーポリシー',
-          to: '/info/privacy/',
-        },
-        {
-          icon: 'mdi-email',
-          title: 'お問い合わせ',
-          to: '/info/contact/',
-        },
-      ],
-      socials,
-      title: 'weddingphoto',
-    }
+    return { drawer: false, links }
   },
 
   methods: {
