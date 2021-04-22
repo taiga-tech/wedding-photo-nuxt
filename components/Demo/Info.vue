@@ -38,18 +38,7 @@
             お問い合わせ
           </v-btn>
 
-          <v-btn
-            v-for="(sns, i) in socials"
-            :key="i"
-            small
-            :color="sns.color"
-            icon
-            :href="sns.href"
-            rel="noopener"
-            target="_blank"
-          >
-            <v-icon>mdi-{{ sns.icon }}</v-icon>
-          </v-btn>
+          <app-sns />
 
           <v-spacer />
 
@@ -64,11 +53,9 @@
 </template>
 
 <script>
-import socials from '~/assets/json/socials.json'
-
 export default {
   data() {
-    return { open: true, socials }
+    return { open: true }
   },
 }
 </script>
