@@ -3,50 +3,30 @@
     <v-row justify="center" no-gutters>
       <v-btn
         v-for="link in links"
-        :key="link.name"
+        :key="link.title"
         :to="link.to"
         nuxt
         exact
         text
         class="mx-2"
       >
-        {{ link.name }}
+        {{ link.title }}
       </v-btn>
 
       <v-col class="pb-1 pt-3 text-center" cols="12">
         &copy; 2021 Taiga Nakano
-        <v-btn
-          v-for="(sns, i) in socials"
-          :key="i"
-          icon
-          :color="sns.color"
-          :href="sns.href"
-          target="_blank"
-          rel="noopener"
-        >
-          <v-icon medium>mdi-{{ sns.icon }}</v-icon>
-        </v-btn>
+        <app-sns />
       </v-col>
     </v-row>
   </v-footer>
 </template>
 
 <script>
-import socials from '~/assets/json/socials.json'
+import links from '~/assets/json/Links.json'
 
 export default {
   data() {
-    return {
-      links: [
-        { name: 'デモ', to: '/demo/' },
-        { name: '作成者について', to: '/info/' },
-        { name: '利用規約', to: '/info/terms/' },
-        { name: 'プライバシーポリシー', to: '/info/privacy/' },
-        { name: 'お問い合わせ', to: '/info/contact/' },
-      ],
-
-      socials,
-    }
+    return { links }
   },
 }
 </script>
