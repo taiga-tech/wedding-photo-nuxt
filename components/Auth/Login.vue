@@ -1,8 +1,5 @@
 <template>
   <div>
-    <!-- <v-btn color="pink" large class="my-2" @click="openm">
-      <v-icon left>mdi-play</v-icon> ログインしてアルバムを開く
-    </v-btn> -->
     <v-dialog v-model="openLogin" width="500">
       <auth-form />
       <template v-slot:activator="{ on, attrs }">
