@@ -49,9 +49,8 @@
           v-for="(sns, i) in socials"
           :key="i"
           block
-          class="my-2"
+          class="my-2 text-decoration-none text-capitalize"
           :color="sns.color"
-          style="text-decoration: none; text-transform: none"
           :href="sns.href"
           target="_blank"
           rel="noopener"
