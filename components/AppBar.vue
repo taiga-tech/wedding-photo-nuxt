@@ -63,7 +63,7 @@
       </template>
     </v-navigation-drawer>
 
-    <v-app-bar clipped-left fixed app dense flat>
+    <v-app-bar clipped-left fixed app dense :flat="!scrollY">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
 
       <nuxt-link to="/">
@@ -87,7 +87,10 @@ export default {
   mixins: [AuthComputed],
 
   data() {
-    return { drawer: false, links }
+    return { drawer: false, links, scrollY: 0 }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
   },
 
   methods: {
@@ -95,6 +98,9 @@ export default {
       await this.$store.dispatch('auth/logout').then(() => {
         this.$router.push('/')
       })
+    },
+    handleScroll() {
+      this.scrollY = window.scrollY
     },
   },
 }
