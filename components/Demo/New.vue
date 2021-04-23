@@ -7,6 +7,7 @@
           <v-icon>mdi-send</v-icon>
         </v-btn>
       </v-toolbar>
+
       <v-form v-model="valid" class="pa-4">
         <v-text-field
           v-model="data.nickname"
@@ -24,13 +25,13 @@
 
         <v-file-input
           v-model="photos"
-          :counter="6"
           :rules="rules.photos"
-          label="Photo"
+          accept=".jpg,image/jpeg,png,image/png"
+          :counter="6"
           multiple
-          show-size
+          label="Photo (最大6枚)"
           prepend-icon="mdi-camera"
-          accept=".jpg,image/jpeg"
+          show-size
           dense
           @change="fileChange"
           @click:clear="reset"
@@ -42,6 +43,10 @@
           placeholder="メッセージを入力してください"
         />
       </v-form>
+      <v-card-text>
+        ※追加した写真、メッセージは画面をリロードすると削除されます。<br />
+        ※データの送信、保存は行わないため、安心してご使用ください。
+      </v-card-text>
     </v-card>
 
     <template v-slot:activator="{ on, attrs }">
