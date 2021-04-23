@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="open" width="500">
-    <v-card>
+    <v-card color="#12151d">
       <v-toolbar dense flat>
         <v-btn
           v-if="localNickname"
