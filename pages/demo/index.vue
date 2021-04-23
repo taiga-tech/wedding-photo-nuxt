@@ -12,38 +12,43 @@
       fullscreen
       transition="dialog-bottom-transition"
     >
-      <v-card>
+      <v-card height="100%" flat tile>
         <v-app-bar dense>
           <v-btn icon color="pink" @click="openmodal = false">
             <v-icon>mdi-close</v-icon>
           </v-btn>
           <v-app-bar-title>@{{ modalsrc.nickname }}</v-app-bar-title>
-
-          <v-spacer />
         </v-app-bar>
 
         <v-card
           max-width="100%"
           max-height="100%"
+          height="100%"
           align="center"
           justify="center"
           class="pa-3"
+          flat
+          tile
         >
           <v-img
+            v-touch="{
+              left: () => swipe(1),
+              right: () => swipe(-1),
+            }"
             :src="conversion(awsCdnUrl, modalsrc.photos[pullIndex].path)"
             :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
             :alt="modalsrc.photos[pullIndex].path"
             :aspect-ratio="modalsrc.photos[pullIndex].aspect"
-            width="90%"
+            contain
             class="align-end"
+            height="90%"
           >
             <v-card-text v-if="modalsrc.message">
               {{ modalsrc.message }}
             </v-card-text>
           </v-img>
         </v-card>
-
-        <div v-if="modalsrc.photos.length >= 2">
+        <v-card v-if="modalsrc.photos.length >= 2" flat tile>
           <client-only>
             <div
               v-masonry="containerId"
@@ -75,7 +80,7 @@
               </div>
             </div>
           </client-only>
-        </div>
+        </v-card>
       </v-card>
     </v-dialog>
 
@@ -152,9 +157,10 @@
 <script>
 import posts from '~/assets/json/DemoData'
 import UaFilters from '~/assets/mixins/UaFilters'
+import ImageSwipe from '~/assets/mixins/ImageSwipe'
 
 export default {
-  mixins: [UaFilters],
+  mixins: [UaFilters, ImageSwipe],
 
   data() {
     return {
@@ -195,27 +201,4 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
-.item {
-  @media only screen and (min-width: 1900px) {
-    width: calc(100% / 8 - 24px);
-    margin: 10px;
-  }
-  @media only screen and (max-width: 1900px) {
-    width: calc(100% / 6 - 24px);
-    margin: 10px;
-  }
-  @media only screen and (max-width: 1300px) {
-    width: calc(100% / 5 - 24px);
-    margin: 10px;
-  }
-  @media only screen and (max-width: 900px) {
-    width: calc(100% / 3 - 24px);
-    margin: 10px;
-  }
-  @media only screen and (max-width: 599px) {
-    width: calc(100% / 2 - 24px);
-    margin: 10px;
-  }
-}
-</style>
+<style lang="scss" src="~/assets/sass/masonry.scss" scoped />
