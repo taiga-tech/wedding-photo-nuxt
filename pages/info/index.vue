@@ -17,7 +17,7 @@
           <h2 class="mb-2">このアプリについて</h2>
           <p class="px-5">
             このアプリは友人の結婚式のために作成しました。<br />
-            コードは以下の3つのリポジトリに公開されています。
+            コードは以下の3つのGitHubリポジトリに公開されています。
           </p>
           <v-list style="max-width: 400px">
             <template v-for="(product, i) in products">
