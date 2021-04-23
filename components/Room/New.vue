@@ -36,13 +36,12 @@
         <v-file-input
           v-model="photos"
           :rules="rules.photos"
-          label="Photo"
+          accept=".jpg,image/jpeg,png,image/png"
           :counter="6"
-          required
           multiple
-          show-size
+          label="Photo (最大6枚)"
           prepend-icon="mdi-camera"
-          accept=".jpg,image/jpeg"
+          show-size
           dense
           @change="fileChange"
           @click:clear="reset"
