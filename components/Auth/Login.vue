@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-dialog v-model="openLogin" width="500">
-      <auth-form />
+      <auth-form style="background-color: #12151d" />
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           color="pink"
