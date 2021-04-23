@@ -32,7 +32,8 @@
           class="pa-3"
         >
           <v-img
-            :src="awsCdnUrl + modalsrc.photos[pullIndex].path + '?p=t'"
+            :src="conversion(awsCdnUrl, modalsrc.photos[pullIndex].path)"
+            :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
             alt=""
             width="90%"
             class="align-end"
@@ -67,7 +68,8 @@
                   @click="getPhoto(modalsrc, i)"
                 >
                   <v-img
-                    :src="awsCdnUrl + preview.path + '?p=t'"
+                    :src="conversion(awsCdnUrl, preview.path)"
+                    :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
                     :aspect-ratio="preview.aspect"
                     :alt="preview.path"
                     :width="width"
@@ -96,7 +98,8 @@
         >
           <v-card hover :loading="loading" :disabled="loading">
             <v-img
-              :src="preview.path"
+              :src="conversion(awsCdnUrl, preview.path)"
+              :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
               :aspect-ratio="preview.aspect"
               :alt="preview.path"
               :width="width"
@@ -115,9 +118,9 @@
             @click="getPhoto(post, index)"
           >
             <v-img
-              :src="awsCdnUrl + photo.path + '?p=t'"
+              :src="conversion(awsCdnUrl, photo.path)"
+              :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
               :aspect-ratio="photo.aspect"
-              lazy-src="https://picsum.photos/id/11/100/60"
               :alt="photo.created_at"
               :width="width"
               class="fill-height"
@@ -143,9 +146,10 @@
 
 <script>
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
+import UaFilters from '~/assets/mixins/UaFilters'
 
 export default {
-  mixins: [AuthComputed],
+  mixins: [AuthComputed, UaFilters],
 
   middleware: ['not_logined_user', 'is_admin', 'logined_user'],
 
