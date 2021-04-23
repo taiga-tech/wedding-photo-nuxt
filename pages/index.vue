@@ -24,7 +24,7 @@
         </b>
       </p>
 
-      <div class="d-flex">
+      <div class="d-flex mx-auto" style="max-width: 1200px">
         <v-img
           :src="conversion(awsCdnUrl, 'img/top_demo_desktop.png')"
           :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
