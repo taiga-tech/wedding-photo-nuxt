@@ -9,12 +9,12 @@
           :rules="rules.login_id"
           autofocus
           name="name"
-          label="login_id"
+          label="ログインID*"
         />
         <v-text-field
           v-model="form.password"
           :rules="rules.password"
-          label="password"
+          label="パスワード*"
           type="password"
           name="password"
         />
