@@ -25,8 +25,8 @@
 
 This app works by combining the following two repositories
 
-Backend: https://github.com/taiga-tech/wedding-photo-api/
-Image optimization: https://github.com/taiga-tech/lambda-edge-image-convert/
+- Backend: https://github.com/taiga-tech/wedding-photo-api/
+- Image optimization: https://github.com/taiga-tech/lambda-edge-image-convert/
 
 **Demo:**
 
