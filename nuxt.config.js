@@ -28,11 +28,11 @@ export default {
       { hid: 'og:title', property: 'og:title', content: 'WPA' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
       // { hid: 'og:url', property: 'og:url', content: '' },
-      // {
-      //   hid: 'og:image',
-      //   property: 'og:image',
-      //   content: '',
-      // },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: 'https://wedding-photo-app.netlify.app/icon2.png/',
+      },
       { property: 'og:site_name', content: 'WPA' },
       {
         hid: 'og:description',
