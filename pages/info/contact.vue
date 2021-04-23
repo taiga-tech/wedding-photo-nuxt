@@ -1,7 +1,12 @@
 <template>
   <v-container style="height: 100%" class="d-flex align-center">
     <div class="mx-auto" style="max-width: 940px">
-      <v-stepper ref="contact" v-model="steps">
+      <v-stepper
+        ref="contact"
+        v-model="steps"
+        style="max-width: 650px"
+        class="mx-auto"
+      >
         <v-stepper-header>
           <v-stepper-step :complete="steps > 1" step="1" :rules="[() => valid]">
             お問い合わせ
@@ -130,6 +135,7 @@
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
+      <app-footer />
     </div>
   </v-container>
 </template>
