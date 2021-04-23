@@ -54,8 +54,8 @@ export default {
       short_name: 'WPA',
       lang: 'ja',
       useWebmanifestExtension: false,
-      background_color: '#000',
-      theme_color: '#000',
+      background_color: '#13151a',
+      theme_color: '#13151a',
       viewport: 'width=device-width,initial-scale=1.0,minimum-scale=1.0',
       description: 'description',
     },
@@ -112,14 +112,24 @@ export default {
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
-    // customVariables: ['~/assets/variables.scss'],
+    customVariables: ['~/assets/variables.scss'],
+    treeShake: true,
+
     defaultAssets: {
       font: false,
     },
 
     theme: {
+      light: false,
       dark: true,
       themes: {
+        options: {
+          customProperties: true,
+          themeCache: {
+            get: (key) => localStorage.getItem(key),
+            set: (key, value) => localStorage.setItem(key, value),
+          },
+        },
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
