@@ -1,6 +1,6 @@
 <template>
   <v-dialog v-model="open" width="500">
-    <v-card>
+    <v-card color="#12151d">
       <v-toolbar dense flat>
         <v-spacer />
         <v-btn :disabled="!valid" icon color="primary" @click="submit">
@@ -8,7 +8,7 @@
         </v-btn>
       </v-toolbar>
 
-      <v-form v-model="valid" class="pa-4">
+      <v-form v-model="valid" class="pa-4 pt-0">
         <v-text-field
           v-model="data.nickname"
           label="ニックネーム"
