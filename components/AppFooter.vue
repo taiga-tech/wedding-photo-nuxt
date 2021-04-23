@@ -14,7 +14,9 @@
       </v-btn>
 
       <v-col class="pb-1 pt-3 text-center" cols="12">
-        &copy; 2021 Taiga Nakano
+        <v-btn text to="/info/" class="text-capitalize" exact>
+          &copy; 2021 Taiga Nakano
+        </v-btn>
         <app-sns />
       </v-col>
     </v-row>
