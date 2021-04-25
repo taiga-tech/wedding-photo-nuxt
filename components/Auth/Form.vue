@@ -18,7 +18,15 @@
           type="password"
           name="password"
         />
-        <v-btn :disabled="!valid" @click="login">ログイン</v-btn>
+        <v-btn :disabled="!valid" :loading="loading" @click="login"
+          >ログイン</v-btn
+        >
+        <v-card-actions>
+          <v-spacer />
+          <v-btn v-for="(link, i) in links" :key="i" text x-small>{{
+            link.name
+          }}</v-btn>
+        </v-card-actions>
       </v-form>
     </v-card-text>
   </v-card>
@@ -38,21 +46,29 @@ export default {
         login_id: '',
         password: '',
       },
+      links: [
+        { name: 'プライバシーポリシー', to: '/info/privacy/' },
+        { name: '利用規約', to: '/info/terms/' },
+      ],
+      loading: false,
     }
   },
 
   methods: {
     async login() {
       this.error = null
+      this.loading = true
       await this.$store
         .dispatch('auth/login', this.form)
         .then(() => {
+          this.loading = false
           if (this.check) {
             this.$router.push(`/room/${this.user.id}`)
           }
         })
         .catch((err) => {
           console.error(err)
+          this.loading = false
           this.error = err
           this.form.password = ''
         })
