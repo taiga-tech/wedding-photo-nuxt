@@ -87,6 +87,10 @@ export default {
 
   moment: { locales: ['ja'] },
 
+  googleAnalytics: {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+  },
+
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
@@ -99,6 +103,8 @@ export default {
     '@nuxtjs/dotenv',
 
     'nuxt-user-agent',
+
+    '@nuxtjs/google-gtag',
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
@@ -109,6 +115,11 @@ export default {
   },
 
   proxy: { '/api': process.env.BASE_URL },
+
+  'google-gtag': {
+    id: process.env.GOOGLE_ANALYTICS_ID,
+    // debug: true,
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
@@ -157,5 +168,6 @@ export default {
     AWS_CDN_URL: process.env.AWS_CDN_URL, // aws cloudfront url
     MAINTENANCE_MODE: process.env.MAINTENANCE_MODE, // true : false
     GEOLONIA_TOKEN: process.env.GEOLONIA_TOKEN, // geolonia api token (https://app.geolonia.com/)
+    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
   },
 }
