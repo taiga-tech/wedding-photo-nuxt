@@ -110,11 +110,13 @@ export default {
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
     proxy: true,
-    baseURL: process.env.BASE_URL,
+    // baseURL: process.env.BASE_URL,
+    baseURL: 'https://66b20f223985.ngrok.io',
     credentials: true,
   },
 
-  proxy: { '/api': process.env.BASE_URL },
+  // proxy: { '/api': process.env.BASE_URL },https://66b20f223985.ngrok.io
+  proxy: { '/api': 'https://66b20f223985.ngrok.io' },
 
   'google-gtag': {
     id: process.env.GOOGLE_ANALYTICS_ID,
