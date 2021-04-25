@@ -23,9 +23,9 @@
         >
         <v-card-actions>
           <v-spacer />
-          <v-btn v-for="(link, i) in links" :key="i" text x-small>{{
-            link.name
-          }}</v-btn>
+          <v-btn v-for="(link, i) in links" :key="i" text x-small :to="link.to">
+            {{ link.name }}
+          </v-btn>
         </v-card-actions>
       </v-form>
     </v-card-text>
