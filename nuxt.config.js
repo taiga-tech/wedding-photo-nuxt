@@ -163,6 +163,10 @@ export default {
     },
   },
 
+  generate: {
+    fallback: true,
+  },
+
   env: {
     BASE_URL: process.env.BASE_URL, // laravel api endpoint
     AWS_CDN_URL: process.env.AWS_CDN_URL, // aws cloudfront url
