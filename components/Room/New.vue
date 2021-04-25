@@ -11,7 +11,13 @@
           <v-icon small>mdi-cog</v-icon>
         </v-btn>
         <v-spacer />
-        <v-btn :disabled="!valid" icon color="primary" @click="submit">
+        <v-btn
+          :disabled="!valid"
+          icon
+          color="primary"
+          :loading="loading"
+          @click="submit"
+        >
           <v-icon>mdi-send</v-icon>
         </v-btn>
       </v-toolbar>
