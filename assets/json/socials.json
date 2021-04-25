@@ -22,5 +22,11 @@
     "icon": "twitter",
     "href": "https://twitter.com/Taiga_dev/",
     "color": "primary"
+  },
+  {
+    "name": "Qiita",
+    "icon": "blogger",
+    "href": "https://qiita.com/taiga-tech/",
+    "color": "light-green"
   }
 ]
