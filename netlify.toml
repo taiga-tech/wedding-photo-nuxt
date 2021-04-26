@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  to = "http://66b20f223985.ngrok.io/api/:splat"
+  to = " http://231943d0f21b.ngrok.io/api/:splat"
   status = 200
   force = true
   headers = {X-From = "Netlify"}
