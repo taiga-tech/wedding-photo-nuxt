@@ -71,6 +71,7 @@
         bottom
         right
         color="primary"
+        aria-label="new-form"
         v-bind="attrs"
         v-on="on"
       >
