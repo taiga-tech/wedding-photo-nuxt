@@ -65,8 +65,8 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    { src: '~/plugins/nuxt-client-init.js', ssr: false },
-    { src: '~/plugins/vue-masonry', ssr: false },
+    { src: '~/plugins/nuxt-client-init.js', mode: 'client' },
+    { src: '~/plugins/vue-masonry', mode: 'client' },
     '~/plugins/axios',
   ],
 
@@ -134,13 +134,6 @@ export default {
       light: false,
       dark: true,
       themes: {
-        options: {
-          customProperties: true,
-          themeCache: {
-            get: (key) => localStorage.getItem(key),
-            set: (key, value) => localStorage.setItem(key, value),
-          },
-        },
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
@@ -149,9 +142,25 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
+          anchor: colors.green.accent2,
+        },
+      },
+      options: {
+        // customProperties: true,
+        themeCache: {
+          get: (key) => localStorage.getItem(key),
+          set: (key, value) => localStorage.setItem(key, value),
         },
       },
     },
+  },
+
+  env: {
+    BASE_URL: process.env.BASE_URL, // laravel api endpoint
+    AWS_CDN_URL: process.env.AWS_CDN_URL, // aws cloudfront url
+    MAINTENANCE_MODE: process.env.MAINTENANCE_MODE, // true : false
+    GEOLONIA_TOKEN: process.env.GEOLONIA_TOKEN, // geolonia api token (https://app.geolonia.com/)
+    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -163,15 +172,5 @@ export default {
     },
   },
 
-  generate: {
-    fallback: true,
-  },
-
-  env: {
-    BASE_URL: process.env.BASE_URL, // laravel api endpoint
-    AWS_CDN_URL: process.env.AWS_CDN_URL, // aws cloudfront url
-    MAINTENANCE_MODE: process.env.MAINTENANCE_MODE, // true : false
-    GEOLONIA_TOKEN: process.env.GEOLONIA_TOKEN, // geolonia api token (https://app.geolonia.com/)
-    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
-  },
+  generate: { fallback: true },
 }
