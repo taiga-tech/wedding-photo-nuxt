@@ -50,7 +50,16 @@
     </v-card>
 
     <template v-slot:activator="{ on, attrs }">
-      <v-btn fab fixed bottom right color="primary" v-bind="attrs" v-on="on">
+      <v-btn
+        fab
+        fixed
+        bottom
+        right
+        color="primary"
+        aria-label="new-form"
+        v-bind="attrs"
+        v-on="on"
+      >
         <v-icon>mdi-camera</v-icon>
       </v-btn>
     </template>
