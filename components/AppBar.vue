@@ -64,9 +64,12 @@
     </v-navigation-drawer>
 
     <v-app-bar clipped-left fixed app dense :flat="!scrollY">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon
+        aria-label="open-menu"
+        @click.stop="drawer = !drawer"
+      />
 
-      <nuxt-link to="/">
+      <nuxt-link to="/" aria-label="top">
         <v-toolbar-title>
           <v-avatar tile><v-img src="/icon.png"></v-img></v-avatar>
         </v-toolbar-title>
