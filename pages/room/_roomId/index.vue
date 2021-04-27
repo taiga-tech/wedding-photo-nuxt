@@ -134,12 +134,7 @@
             >
               <v-card-text>@{{ post.nickname }}</v-card-text>
               <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-progress-circular
-                    indeterminate
-                    color="green lighten-5"
-                  ></v-progress-circular>
-                </v-row>
+                <app-progresscircle />
               </template>
             </v-img>
           </v-card>
