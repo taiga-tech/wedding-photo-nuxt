@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-btn icon midiam @click="openHelp = !openHelp">
+    <v-btn icon midiam aria-label="info" @click="openHelp = !openHelp">
       <v-icon>mdi-help-circle-outline</v-icon>
     </v-btn>
     <v-dialog v-model="openHelp" width="520" scrollable>
