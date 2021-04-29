@@ -37,7 +37,7 @@
                 href="https://twitter.com/Taiga_dev"
                 target="_blank"
                 rel="noopener"
-                ><v-icon x-small color="primary">mdi-twitter</v-icon>
+                ><v-icon x-small color="#69f0ae">mdi-twitter</v-icon>
                 @Taiga_dev
               </a>
               でも受付可能です。
@@ -181,10 +181,6 @@ export default {
     },
   },
 
-  mounted() {
-    this.updateDescription()
-  },
-
   methods: {
     async onSubmit() {
       const contacts = new URLSearchParams()
@@ -211,12 +207,6 @@ export default {
 
     refresh() {
       location.reload()
-    },
-    updateDescription() {
-      this.meta.description = this.$refs.contact.$vnode.elm.textContent.replace(
-        /\s/g,
-        ''
-      )
     },
   },
 }
