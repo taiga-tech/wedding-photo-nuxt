@@ -45,6 +45,9 @@
           aspect-ratio="0.48976926"
           contain
         >
+          <template v-slot:placeholder>
+            <app-progresscircle />
+          </template>
         </v-img>
       </div>
     </div>
@@ -66,19 +69,4 @@ export default {
 }
 </script>
 
-<style scoped>
-.headTitle {
-  display: block;
-  background-image: -webkit-linear-gradient(
-    270.97deg,
-    rgb(255, 229, 128) -21.36%,
-    rgb(255, 117, 113) -2.45%,
-    rgb(234, 93, 173) 26.84%,
-    rgb(194, 160, 253) 64.15%,
-    rgb(59, 240, 228) 108.29%,
-    rgb(178, 244, 182) 159.03%
-  );
-  -webkit-text-fill-color: rgba(0, 0, 0, 0);
-  -webkit-background-clip: text;
-}
-</style>
+<style src="~/assets/sass/headTitle.css" scoped />
