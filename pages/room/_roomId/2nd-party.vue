@@ -8,7 +8,6 @@
       </v-list-item-avatar>
 
       <v-list-item-title>{{ sp.name }}</v-list-item-title>
-
       <v-list-item-icon>
         <v-btn icon :href="sp.instagram" target="_blank" rel="noopener">
           <v-icon>mdi-instagram</v-icon>
