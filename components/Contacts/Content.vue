@@ -54,14 +54,14 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .label {
   padding: 1rem 1rem;
   border-left: 6px double #ffffffb3;
 }
 .value {
   border-radius: 6px;
-  background-color: #303030;
+  background-color: #2c3e4e;
   overflow: auto;
 }
 </style>
