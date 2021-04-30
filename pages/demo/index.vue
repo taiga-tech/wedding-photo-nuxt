@@ -153,9 +153,10 @@
 import posts from '~/assets/json/DemoData'
 import UaFilters from '~/assets/mixins/UaFilters'
 import ImageSwipe from '~/assets/mixins/ImageSwipe'
+import Meta from '~/assets/mixins/Meta'
 
 export default {
-  mixins: [UaFilters, ImageSwipe],
+  mixins: [Meta, UaFilters, ImageSwipe],
 
   data() {
     return {
@@ -167,6 +168,11 @@ export default {
       posts,
       sessionPosts: [],
       pullIndex: null,
+      meta: {
+        title: 'デモ',
+        description:
+          'デモページへようこそ！このページではログイン後の動作を再現しています | Wedding Photo Album みんなでひとつだけのフォトアルバム',
+      },
     }
   },
 
@@ -186,12 +192,6 @@ export default {
       this.modalsrc = post
       this.pullIndex = index
     },
-  },
-
-  head() {
-    return {
-      title: 'デモ - ',
-    }
   },
 }
 </script>
