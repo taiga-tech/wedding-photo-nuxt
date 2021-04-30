@@ -32,9 +32,11 @@
 </template>
 
 <script>
+import Meta from '~/assets/mixins/Meta'
+
 export default {
   middleware: ['not_logined_user', 'is_admin', 'logined_user'],
-
+  mixins: [Meta],
   data() {
     return {
       sp: {
@@ -46,6 +48,9 @@ export default {
         // geocording↓
         lat: '33.592684',
         lng: '130.393582',
+      },
+      meta: {
+        title: '二次会情報',
       },
     }
   },
