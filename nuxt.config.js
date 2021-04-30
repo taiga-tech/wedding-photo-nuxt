@@ -41,7 +41,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://wedding-photo-app.netlify.app/icon2.png/',
+        content: 'https://wedding-photo-app.netlify.app/icon.png/',
       },
       { property: 'og:site_name', content: 'Wedding Photo Album' },
       {
@@ -167,6 +167,9 @@ export default {
       if (isClient) {
         config.devtool = 'source-map'
       }
+    },
+    babel: {
+      plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]],
     },
   },
 
