@@ -62,10 +62,6 @@ import UaFilters from '~/assets/mixins/UaFilters'
 
 export default {
   mixins: [AuthComputed, UaFilters],
-
-  head() {
-    return { title: null }
-  },
 }
 </script>
 
