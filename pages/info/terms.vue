@@ -247,3 +247,18 @@
     <app-footer />
   </v-container>
 </template>
+
+<script>
+import Meta from '~/assets/mixins/Meta'
+
+export default {
+  mixins: [Meta],
+  data() {
+    return {
+      meta: {
+        title: '利用規約',
+      },
+    }
+  },
+}
+</script>
