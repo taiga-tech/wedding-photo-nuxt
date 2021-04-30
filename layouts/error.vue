@@ -3,11 +3,11 @@
     <v-dialog v-model="open" width="500" persistent>
       <v-card color="#13151a">
         <v-card-title>
-          <v-icon color="error" left>mdi-cloud-alert</v-icon>
-          <h1 v-if="error.statusCode === 404">
+          <v-icon color="#dd2c00" left>mdi-cloud-alert</v-icon>
+          <h1 v-if="error.statusCode === 404" style="font-size: 20px">
             {{ pageNotFound }}
           </h1>
-          <h1 v-else>
+          <h1 v-else style="font-size: 20px">
             {{ otherError }}
           </h1>
         </v-card-title>
@@ -16,7 +16,7 @@
           <v-spacer></v-spacer>
           <v-btn color="green" text to="/info/contact/"> お問い合わせ </v-btn>
           <v-btn
-            color="primary"
+            color="#1976d1"
             text
             href="https://twitter.com/Taiga_dev/"
             rel="noopener"
@@ -55,9 +55,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-h1 {
-  font-size: 20px;
-}
-</style>
