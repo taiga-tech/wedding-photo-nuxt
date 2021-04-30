@@ -35,19 +35,19 @@ export default {
   methods: {
     async qrLogin() {
       if (this.check) {
-        this.$router.push(`/room/${this.user.id}`)
+        this.$router.push(`/room/${this.user.id}/`)
       }
 
       if (Object.keys(this.$route.query).length !== 0) {
         this.loading = true
         await this.$store
           .dispatch('auth/login', {
-            login_id: this.$route.query.login_id,
-            password: this.$route.query.password,
+            login_id: this.$route.query.id,
+            password: this.$route.query.pas,
           })
           .then(() => {
             if (this.check) {
-              this.$router.push(`/room/${this.user.id}`)
+              this.$router.push(`/room/${this.user.id}/`)
               this.loading = false
             }
           })
