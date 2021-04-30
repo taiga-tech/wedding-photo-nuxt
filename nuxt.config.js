@@ -14,35 +14,48 @@ export default {
       lang: 'ja',
       prefix: 'og: http://ogp.me/ns#',
     },
-    titleTemplate: '%sWPA',
-    title: 'WPA',
+
+    // titleTemplate: '%s',
+    title: 'Wedding Photo Album',
+
     meta: [
       { charset: 'utf-8' },
       {
         name: 'viewport',
         content: 'width=device-width,initial-scale=1.0,minimum-scale=1.0',
       },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'Wedding Photo Album みんなでひとつだけのフォトアルバム',
+      },
+      // {
+      //   hid: 'og:url',
+      //   property: 'og:url',
+      //   content: process.env.APP_URL,
+      // },
 
       // global OGP
-      { hid: 'og:title', property: 'og:title', content: 'WPA' },
+      { hid: 'og:title', property: 'og:title', content: 'Wedding Photo Album' },
       { hid: 'og:type', property: 'og:type', content: 'website' },
-      // { hid: 'og:url', property: 'og:url', content: '' },
       {
         hid: 'og:image',
         property: 'og:image',
         content: 'https://wedding-photo-app.netlify.app/icon2.png/',
       },
-      { property: 'og:site_name', content: 'WPA' },
+      { property: 'og:site_name', content: 'Wedding Photo Album' },
       {
         hid: 'og:description',
         property: 'og:description',
-        content: '',
+        content: 'Wedding Photo Album みんなでひとつだけのフォトアルバム',
       },
       // Twitter OGP
-      { name: 'twitter:card', content: 'summary' },
+      { name: 'twitter:card', content: 'summary_large_image' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      // { rel: 'canonical', href: process.env.APP_URL },
+    ],
   },
 
   pwa: {
@@ -50,14 +63,14 @@ export default {
       fileName: 'icon2.png',
     },
     manifest: {
-      name: 'WPA',
+      name: 'Wedding Photo Album',
       short_name: 'WPA',
       lang: 'ja',
       useWebmanifestExtension: false,
       background_color: '#13151a',
       theme_color: '#13151a',
       viewport: 'width=device-width,initial-scale=1.0,minimum-scale=1.0',
-      description: 'description',
+      description: 'Wedding Photo Album みんなでひとつだけのフォトアルバム',
     },
   },
 
@@ -66,8 +79,8 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { src: '~/plugins/nuxt-client-init.js', mode: 'client' },
-    { src: '~/plugins/vue-masonry', mode: 'client' },
-    '~/plugins/axios',
+    { src: '~/plugins/vue-masonry.js', mode: 'client' },
+    { src: '~/plugins/axios.js' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -86,10 +99,6 @@ export default {
   ],
 
   moment: { locales: ['ja'] },
-
-  googleAnalytics: {
-    id: process.env.GOOGLE_ANALYTICS_ID,
-  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -125,12 +134,16 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     treeShake: true,
-
-    defaultAssets: {
-      font: false,
-    },
+    defaultAssets: { font: false },
 
     theme: {
+      options: {
+        // customProperties: true,
+        themeCache: {
+          get: (key) => localStorage.getItem(key),
+          set: (key, value) => localStorage.setItem(key, value),
+        },
+      },
       light: false,
       dark: true,
       themes: {
@@ -145,22 +158,7 @@ export default {
           anchor: colors.green.accent2,
         },
       },
-      options: {
-        // customProperties: true,
-        themeCache: {
-          get: (key) => localStorage.getItem(key),
-          set: (key, value) => localStorage.setItem(key, value),
-        },
-      },
     },
-  },
-
-  env: {
-    BASE_URL: process.env.BASE_URL, // laravel api endpoint
-    AWS_CDN_URL: process.env.AWS_CDN_URL, // aws cloudfront url
-    MAINTENANCE_MODE: process.env.MAINTENANCE_MODE, // true : false
-    GEOLONIA_TOKEN: process.env.GEOLONIA_TOKEN, // geolonia api token (https://app.geolonia.com/)
-    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID,
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
@@ -173,4 +171,13 @@ export default {
   },
 
   generate: { fallback: true },
+
+  env: {
+    APP_URL: process.env.APP_URL, // Nuxt URL
+    BASE_URL: process.env.BASE_URL, // laravel api endpoint
+    AWS_CDN_URL: process.env.AWS_CDN_URL, // aws cloudfront url
+    MAINTENANCE_MODE: process.env.MAINTENANCE_MODE, // true : false
+    GEOLONIA_TOKEN: process.env.GEOLONIA_TOKEN, // geolonia api token (https://app.geolonia.com/)
+    GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID, // Google Analytics Measurement ID
+  },
 }
