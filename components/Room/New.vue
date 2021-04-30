@@ -165,6 +165,7 @@ export default {
           this.formReset()
         })
         .catch((err) => {
+          this.loading = false
           this.$parent.error = err
           console.error(err)
           this.$parent.previews = []
