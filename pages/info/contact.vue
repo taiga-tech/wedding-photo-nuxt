@@ -136,17 +136,15 @@
 </template>
 
 <script>
-// import Meta from '~/assets/mixins/meta.js'
+import Meta from '~/assets/mixins/Meta'
 
 export default {
-  // mixins: [Meta],
+  mixins: [Meta],
 
   data() {
     return {
       meta: {
         title: 'お問い合わせ',
-        description: 'お問い合わせ',
-        url: 'info/contact',
       },
       steps: 1,
       data: {
