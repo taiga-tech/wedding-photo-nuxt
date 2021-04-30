@@ -41,7 +41,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://wedding-photo-app.netlify.app/icon.png/',
+        // content: 'https://wedding-photo-app.netlify.app/icon.png/',
       },
       { property: 'og:site_name', content: 'Wedding Photo Album' },
       {
