@@ -41,7 +41,7 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: 'https://wedding-photo-app.netlify.app/icon.png/',
+        content: 'https://wedding-photo-app.netlify.app/icon2.png/',
       },
       { property: 'og:site_name', content: 'Wedding Photo Album' },
       {
@@ -64,7 +64,7 @@ export default {
     },
     manifest: {
       name: 'Wedding Photo Album',
-      short_name: 'WPA',
+      short_name: 'Wedding Photo Album',
       lang: 'ja',
       useWebmanifestExtension: false,
       background_color: '#13151a',
