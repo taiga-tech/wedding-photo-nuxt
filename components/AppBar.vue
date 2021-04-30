@@ -4,13 +4,15 @@
       <v-list v-if="check">
         <v-list-item :to="`/room/${user.id}/`" color="white" exact>
           <v-list-item-content>
-            <v-list-item-title> {{ user.name }}</v-list-item-title>
-            <!-- <v-list-item-subtitle align="right">
-              部屋に入室する
-            </v-list-item-subtitle> -->
+            <v-list-item-title>{{ user.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item :to="`/room/${user.id}/secondparty/`" color="white">
+        <v-list-item :to="`/room/${user.id}/album`" color="white" exact>
+          <v-list-item-content>
+            <v-list-item-title>アルバム</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item :to="`/room/${user.id}/2nd-party/`" color="white">
           <v-list-item-content>
             <v-list-item-title>二次会情報</v-list-item-title>
           </v-list-item-content>
@@ -76,7 +78,9 @@
       </nuxt-link>
 
       <v-spacer />
-      <v-btn v-if="!check" to="/login">ログイン</v-btn>
+
+      <v-btn v-if="!check" to="/login/" small> ログイン </v-btn>
+
       <info-help />
     </v-app-bar>
   </div>
