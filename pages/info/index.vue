@@ -64,9 +64,10 @@
 <script>
 import UaFilters from '~/assets/mixins/UaFilters'
 import socials from '~/assets/json/socials.json'
+import Meta from '~/assets/mixins/Meta'
 
 export default {
-  mixins: [UaFilters],
+  mixins: [UaFilters, Meta],
   data() {
     return {
       products: [
@@ -93,6 +94,9 @@ export default {
         },
       ],
       socials,
+      meta: {
+        title: '作成者について',
+      },
     }
   },
 }
