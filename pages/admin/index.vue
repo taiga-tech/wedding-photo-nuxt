@@ -43,8 +43,11 @@
 </template>
 
 <script>
+import Meta from '~/assets/mixins/Meta'
+
 export default {
   middleware: ['not_logined_user', 'is_admin'],
+  mixins: [Meta],
 
   data() {
     return {
@@ -59,6 +62,9 @@ export default {
           value: 'data-table-expand',
         },
       ],
+      meta: {
+        title: '管理画面',
+      },
     }
   },
 
