@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-card style="max-width: 940px; margin: 0 auto" class="pa-4" outlined>
+    <v-card style="max-width: 940px; margin: 0 auto" class="pa-4">
       <v-card-title><b>利用規約</b></v-card-title>
       <v-card-text>
         <p>
