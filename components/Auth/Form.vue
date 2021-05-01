@@ -18,9 +18,14 @@
           type="password"
           name="password"
         />
-        <v-btn :disabled="!valid" :loading="loading" @click="login"
-          >ログイン</v-btn
+        <v-btn
+          :disabled="!valid"
+          :loading="loading"
+          type="submit"
+          @click.prevent="login"
         >
+          ログイン
+        </v-btn>
         <v-card-actions>
           <v-spacer />
           <v-btn v-for="(link, i) in links" :key="i" text x-small :to="link.to">
