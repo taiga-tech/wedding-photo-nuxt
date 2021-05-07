@@ -51,7 +51,7 @@
         <v-card v-if="modalsrc.photos.length >= 2" flat tile>
           <client-only>
             <div
-              v-masonry="containerId"
+              v-masonry="'preContainerId'"
               transition-duration="0.1s"
               item-selector=".item"
               class="masonryWrap"
@@ -59,7 +59,7 @@
               <div
                 v-for="(photo, i) in modalsrc.photos"
                 :key="photo.path"
-                v-masonry-tile="containerId"
+                v-masonry-tile="'preContainerId'"
                 class="item"
               >
                 <v-card
