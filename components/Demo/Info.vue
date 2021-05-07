@@ -42,7 +42,7 @@
 
           <v-spacer />
 
-          <v-btn color="pink" @click="open = false">
+          <v-btn color="pink" aria-label="start" @click="open = false">
             <v-icon>mdi-play</v-icon>
             <span class="hidden-sm-and-down">start</span>
           </v-btn>
