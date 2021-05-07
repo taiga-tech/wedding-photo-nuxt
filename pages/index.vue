@@ -29,6 +29,7 @@
           :src="conversion(awsCdnUrl, 'img/top_demo_desktop.png')"
           :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
           alt="top_demo_desktop"
+          style="border-radius: 5px"
           width="75%"
           contain
         >
@@ -41,8 +42,9 @@
           :src="conversion(awsCdnUrl, 'img/top_demo_mobile.png')"
           :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
           alt="top_demo_mobile"
+          style="border-radius: 5px"
           width="25%"
-          aspect-ratio="0.48976926"
+          aspect-ratio="0.46182266"
           contain
         >
           <template v-slot:placeholder>
