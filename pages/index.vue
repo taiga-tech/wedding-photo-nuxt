@@ -38,7 +38,7 @@
         </v-img>
 
         <v-img
-          :src="conversion(awsCdnUrl, 'img/top_demo_mobile.jpg')"
+          :src="conversion(awsCdnUrl, 'img/top_demo_mobile.png')"
           :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
           alt="top_demo_mobile"
           width="25%"
