@@ -7,11 +7,11 @@
             <v-list-item-title>{{ user.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item :to="`/room/${user.id}/album`" color="white" exact>
+        <!-- <v-list-item :to="`/room/${user.id}/album`" color="white" exact>
           <v-list-item-content>
             <v-list-item-title>アルバム</v-list-item-title>
           </v-list-item-content>
-        </v-list-item>
+        </v-list-item> -->
         <v-list-item :to="`/room/${user.id}/2nd-party/`" color="white">
           <v-list-item-content>
             <v-list-item-title>二次会情報</v-list-item-title>
