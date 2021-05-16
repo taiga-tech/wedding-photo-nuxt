@@ -28,6 +28,8 @@ This app works by combining the following two repositories
 - Backend: https://github.com/taiga-tech/wedding-photo-api/
 - Image optimization: https://github.com/taiga-tech/lambda-edge-image-convert/
 
+App for sharing photos of weddings and wedding receptions
+
 **Demo:**
 
 Comming soon...
@@ -68,6 +70,10 @@ npm run dev
 - https://github.com/geolonia/
 - https://github.com/geolonia/community-geocoder/
 - https://github.com/geolonia/midnight
+
+## Consideration
+
+- https://github.com/BoxFactura/pulltorefresh.js
 
 ## Author
 
