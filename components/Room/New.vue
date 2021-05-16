@@ -75,7 +75,7 @@
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon>mdi-camera</v-icon>
+        <v-icon>mdi-image-multiple</v-icon>
       </v-btn>
     </template>
   </v-dialog>
