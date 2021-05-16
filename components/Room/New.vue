@@ -46,7 +46,7 @@
           :counter="6"
           multiple
           label="Photo (最大6枚)"
-          prepend-icon="mdi-camera"
+          prepend-icon="mdi-image-multiple"
           show-size
           dense
           @change="fileChange"
