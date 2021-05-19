@@ -6,7 +6,7 @@ import Rollbar from 'rollbar'
 // This ensures it is available in the same way for every
 // instance in your app.
 Vue.prototype.$rollbar = new Rollbar({
-  accessToken: 'ea05fb9577a04fef90551a16677c7585',
+  accessToken: process.env.POST_CLIANT_TOKEN,
   captureUncaught: true,
   captureUnhandledRejections: true,
 })
