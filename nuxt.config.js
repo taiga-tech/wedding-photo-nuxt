@@ -183,5 +183,6 @@ export default {
     MAINTENANCE_MODE: process.env.MAINTENANCE_MODE, // true : false
     GEOLONIA_TOKEN: process.env.GEOLONIA_TOKEN, // geolonia api token (https://app.geolonia.com/)
     GOOGLE_ANALYTICS_ID: process.env.GOOGLE_ANALYTICS_ID, // Google Analytics Measurement ID
+    POST_CLIANT_TOKEN: process.env.POST_CLIANT_TOKEN, // Rollbar access token
   },
 }
