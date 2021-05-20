@@ -21,7 +21,7 @@
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn color="primary" text dark v-bind="attrs" v-on="on">
-                  save
+                  <v-icon>mdi-dots-vertical</v-icon>
                 </v-btn>
               </template>
               <v-list>
@@ -196,7 +196,11 @@ export default {
       openmodal: false,
       modalsrc: null,
       pullIndex: null,
-      items: [{ title: 'この画像のみ保存' }, { title: '全て保存' }],
+      items: [
+        { title: 'この画像のみ保存' },
+        { title: '全て保存' },
+        { title: '削除依頼' },
+      ],
       meta: {
         title: null,
       },
