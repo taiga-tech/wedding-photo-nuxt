@@ -30,7 +30,7 @@ export default {
       contacts.append('message', data.message)
       contacts.append('photos', data.photos.length)
       contacts.append('created_at', data.created_at)
-      contacts.append('data', data)
+      contacts.append('data', JSON.stringify(data))
       await this.$axios
         // .$post('/', contacts)
         // .$post('localhost', contacts) // error handling
