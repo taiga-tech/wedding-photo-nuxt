@@ -2,12 +2,7 @@
   <v-dialog v-model="open" width="500">
     <v-card color="#12151d">
       <v-toolbar dense flat>
-        <v-btn
-          v-if="localNickname"
-          icon
-          small
-          @click="cogNickname = !cogNickname"
-        >
+        <v-btn v-if="nickname" icon small @click="cogNickname = !cogNickname">
           <v-icon small>mdi-cog</v-icon>
         </v-btn>
         <v-spacer />
@@ -24,11 +19,11 @@
 
       <v-form v-model="valid" class="pa-4">
         <v-text-field
-          v-if="!localNickname || cogNickname"
+          v-if="!nickname || cogNickname"
           v-model="nickname"
           label="ニックネーム"
           placeholder="名前を入力してください"
-          :autofocus="!localNickname"
+          :autofocus="!nickname"
           required
           :rules="rules.nickname"
         />
@@ -73,6 +68,7 @@
         color="primary"
         aria-label="new-form"
         v-bind="attrs"
+        @click="local"
         v-on="on"
       >
         <v-icon>mdi-image-multiple</v-icon>
@@ -102,19 +98,17 @@ export default {
     }
   },
 
-  computed: {
-    localNickname() {
-      return localStorage.getItem('nickname')
-    },
-  },
-
   mounted() {
-    this.nickname = localStorage.getItem('nickname')
-      ? localStorage.getItem('nickname')
-      : null
+    this.local()
   },
 
   methods: {
+    local() {
+      this.nickname = localStorage.getItem('nickname')
+        ? localStorage.getItem('nickname')
+        : null
+    },
+
     fileChange() {
       // とりあえずpreview === photosを実現、改善余地あり
       if (this.photos.length === 0) {
