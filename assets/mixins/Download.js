@@ -9,17 +9,6 @@ export default {
 
   methods: {
     async onRequest(data) {
-      // console.log(
-      //   data.user.id,
-      //   data.user.name,
-      //   data.user.role,
-      //   data.id,
-      //   data.nickname,
-      //   data.message,
-      //   data.photos.length,
-      //   data.created_at,
-      //   data
-      // )
       const contacts = new URLSearchParams()
       contacts.append('form-name', 'request')
       contacts.append('userId', data.user.id)
@@ -45,29 +34,49 @@ export default {
         })
     },
 
+    async downloadLink(path) {
+      await this.$axios
+        .post(
+          '/api/posts/download?path=' + path
+          // , {
+          //   params: { path: ['/api', 'logined_user'] },
+          //   responseType: 'arraybuffer',
+          // }
+        )
+        .then((response) => {
+          const blob = new Blob(
+            [response.data]
+            //  { type: 'image/jpeg' }
+          )
+          const url = (window.URL || window.webkitURL).createObjectURL(blob)
+          // link作成してダウンロードがいいぽい
+          const link = document.createElement('a')
+          link.href = window.URL.createObjectURL(url)
+          link.download = 'sample.jpg'
+          link.click()
+        })
+        .catch((err) => {
+          console.error(err)
+          this.$rollbar.error(err)
+        })
+    },
+
     download(e, index, obj) {
       if (e === 0) {
-        console.log(obj.photos)
-      } else if (e === 1) {
         console.log(obj.photos[index].path)
+        // this.downloadLink(obj.photos[index].path)
+        alert(
+          'ごめんなさい間に合いませんでした笑\n画像が欲しい場合はご連絡ください'
+        )
+      } else if (e === 1) {
+        console.log(obj.photos)
+        alert(
+          'ごめんなさい間に合いませんでした笑\n画像が欲しい場合はご連絡ください'
+        )
       } else if (e === 2) {
         // console.log(e, obj)
         this.onRequest(obj)
       }
-
-      // await this.$axios
-      //   .get('/api/posts/download', {
-      //     params: { path: ['/api', 'logined_user'] },
-      //     responseType: 'arraybuffer',
-      //   })
-      //   .then((response) => {
-      //     // const blob = new Blob([response.data], { type: 'image/jpeg' })
-      //     // const url = (window.URL || window.webkitURL).createObjectURL(blob)
-      //     // link作成してダウンロードがいいぽい
-      //   })
-      //   .catch((err) => {
-      //     console.error(err)
-      //   })
     },
   },
 }
