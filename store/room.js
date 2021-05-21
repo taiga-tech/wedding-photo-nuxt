@@ -27,6 +27,7 @@ export const actions = {
       })
       .catch((err) => {
         console.error(err)
+        this.$rollbar.error(err)
         throw new Error('画像取得に失敗しました ページを再読み込みしてください')
       })
   },
@@ -39,6 +40,7 @@ export const actions = {
       })
       .catch((err) => {
         console.error(err)
+        this.$rollbar.error(err)
         throw new Error(
           '送信に失敗しました ページを再読み込みしてもう一度お試しください'
         )
@@ -53,6 +55,7 @@ export const actions = {
       })
       .catch((err) => {
         console.error(err)
+        this.$rollbar.error(err)
         throw new Error(err)
       })
   },

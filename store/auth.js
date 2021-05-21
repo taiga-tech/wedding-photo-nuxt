@@ -22,6 +22,7 @@ export const actions = {
       })
       .catch((err) => {
         console.error(err)
+        this.$rollbar.error(err)
         throw new Error('ログインに失敗しました もう一度お試しください')
       })
   },

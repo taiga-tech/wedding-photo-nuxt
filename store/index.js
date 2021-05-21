@@ -9,6 +9,7 @@ export const actions = {
       })
       .catch((err) => {
         console.error(err)
+        this.$rollbar.error(err)
         commit('auth/setUser', null)
       })
   },
