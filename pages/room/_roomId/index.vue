@@ -20,7 +20,7 @@
           <v-toolbar-items>
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
-                <v-btn color="primary" text dark v-bind="attrs" v-on="on">
+                <v-btn text dark v-bind="attrs" v-on="on">
                   <v-icon>mdi-dots-vertical</v-icon>
                 </v-btn>
               </template>
@@ -198,7 +198,7 @@ export default {
       pullIndex: null,
       items: [
         { title: 'この画像のみ保存' },
-        { title: '全て保存' },
+        { title: 'この投稿の画像を保存' },
         { title: '削除依頼' },
       ],
       meta: {
