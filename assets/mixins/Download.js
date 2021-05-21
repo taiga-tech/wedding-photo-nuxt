@@ -34,32 +34,32 @@ export default {
         })
     },
 
-    async downloadLink(path) {
-      await this.$axios
-        .post(
-          '/api/posts/download?path=' + path
-          // , {
-          //   params: { path: ['/api', 'logined_user'] },
-          //   responseType: 'arraybuffer',
-          // }
-        )
-        .then((response) => {
-          const blob = new Blob(
-            [response.data]
-            //  { type: 'image/jpeg' }
-          )
-          const url = (window.URL || window.webkitURL).createObjectURL(blob)
-          // link作成してダウンロードがいいぽい
-          const link = document.createElement('a')
-          link.href = window.URL.createObjectURL(url)
-          link.download = 'sample.jpg'
-          link.click()
-        })
-        .catch((err) => {
-          console.error(err)
-          this.$rollbar.error(err)
-        })
-    },
+    // async downloadLink(path) {
+    //   await this.$axios
+    //     .post(
+    //       '/api/posts/download?path=' + path
+    //       // , {
+    //       //   params: { path: ['/api', 'logined_user'] },
+    //       //   responseType: 'arraybuffer',
+    //       // }
+    //     )
+    //     .then((response) => {
+    //       const blob = new Blob(
+    //         [response.data]
+    //         //  { type: 'image/jpeg' }
+    //       )
+    //       const url = (window.URL || window.webkitURL).createObjectURL(blob)
+    //       // link作成してダウンロードがいいぽい
+    //       const link = document.createElement('a')
+    //       link.href = window.URL.createObjectURL(url)
+    //       link.download = 'sample.jpg'
+    //       link.click()
+    //     })
+    //     .catch((err) => {
+    //       console.error(err)
+    //       this.$rollbar.error(err)
+    //     })
+    // },
 
     download(e, index, obj) {
       if (e === 0) {
