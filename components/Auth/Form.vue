@@ -52,8 +52,8 @@ export default {
         password: '',
       },
       links: [
-        { name: 'プライバシーポリシー', to: '/info/privacy/' },
         { name: '利用規約', to: '/info/terms/' },
+        { name: 'プライバシーポリシー', to: '/info/privacy/' },
       ],
       loading: false,
     }
