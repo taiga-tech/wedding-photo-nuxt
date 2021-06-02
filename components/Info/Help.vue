@@ -52,7 +52,7 @@
             </v-img>
             <div style="width: 15%">
               <v-btn
-                v-if="index !== 4"
+                v-if="index !== 5"
                 text
                 block
                 height="100%"
@@ -65,7 +65,7 @@
         </v-card-text>
 
         <v-card-actions class="py-0">
-          <v-btn v-if="index === 4" block color="pink" @click="close">
+          <v-btn v-if="index === 5" block color="pink" @click="close">
             <v-icon left>mdi-play</v-icon>
             start
           </v-btn>
