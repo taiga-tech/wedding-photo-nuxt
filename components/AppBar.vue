@@ -96,6 +96,7 @@ export default {
   data() {
     return { drawer: false, links, scrollY: 0 }
   },
+
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
   },
