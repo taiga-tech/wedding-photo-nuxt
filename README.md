@@ -40,14 +40,14 @@ Comming soon...
 
 ## Dependency
 
-|language|Version|
-|---|---|
-|Mac OS|Catalina 10.15.7|
-|Node|15.4.0|
-|npm|7.10.0|
-|Nuxt|2.15.4|
-|Vue|2.6.12|
-|Vuetify|2.4.9|
+| language | Version          |
+| -------- | ---------------- |
+| Mac OS   | Catalina 10.15.7 |
+| Node     | 15.4.0           |
+| npm      | 7.10.0           |
+| Nuxt     | 2.15.4           |
+| Vue      | 2.6.12           |
+| Vuetify  | 2.4.9            |
 
 ## Build Setup
 
