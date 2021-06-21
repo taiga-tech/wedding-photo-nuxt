@@ -60,7 +60,7 @@ export default {
         })
         .catch((err) => {
           this.loading = false
-          this.$rollbar.error(err)
+          // this.$rollbar.error(err)
           console.error(err)
         })
     },

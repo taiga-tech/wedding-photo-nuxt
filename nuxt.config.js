@@ -81,7 +81,7 @@ export default {
     { src: '~/plugins/nuxt-client-init.js', mode: 'client' },
     { src: '~/plugins/vue-masonry.js', mode: 'client' },
     { src: '~/plugins/axios.js' },
-    { src: '~/plugins/rollbar.js' },
+    // { src: '~/plugins/rollbar.js' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

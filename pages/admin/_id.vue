@@ -102,7 +102,7 @@ export default {
       .get('/api/admin/' + params.id + '/')
       .catch((err) => {
         console.error(err)
-        context.$rollbar.error(err)
+        // context.$rollbar.error(err)
       })
     const user = response.data
 
@@ -143,7 +143,7 @@ export default {
         .get('/api/admin/' + this.route.params.id + '/')
         .catch((err) => {
           console.error(err)
-          this.$rollbar.error(err)
+          // this.$rollbar.error(err)
         })
       const user = response.data
       this.user = user
