@@ -39,11 +39,11 @@
       </v-list>
 
       <template v-slot:append>
-        <div align="right" class="ma-1">
+        <!-- <div align="right" class="ma-1">
           <app-sns />
         </div>
 
-        <v-divider v-if="check" />
+        <v-divider v-if="check" /> -->
 
         <v-list v-if="check">
           <v-list-item color="pink" input-value="true" @click="logout">
