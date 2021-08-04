@@ -18,7 +18,7 @@ export default {
         this.$ua.browser() === 'Safari' &&
         parseFloat(this.$ua.browserVersion()) < supportVersion
       ) {
-        return url
+        return url + '?p=f'
       }
 
       return url + '?p=t'
