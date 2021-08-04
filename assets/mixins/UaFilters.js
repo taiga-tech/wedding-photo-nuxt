@@ -8,6 +8,7 @@ export default {
   methods: {
     conversion(endpoint, path) {
       const url = endpoint + path
+      const supportVersion = 14.1
 
       if (endpoint === '' || path.slice(0, 4) === 'data') {
         return path
@@ -15,7 +16,7 @@ export default {
 
       if (
         this.$ua.browser() === 'Safari' &&
-        parseFloat(this.$ua.browserVersion()) < 14.1
+        parseFloat(this.$ua.browserVersion()) < supportVersion
       ) {
         return url
       }
