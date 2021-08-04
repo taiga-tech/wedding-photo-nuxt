@@ -7,17 +7,20 @@ export default {
 
   methods: {
     conversion(endpoint, path) {
+      const url = endpoint + path
+
       if (endpoint === '' || path.slice(0, 4) === 'data') {
         return path
       }
-      if (this.$ua.isFromSmartphone()) {
-        return endpoint + path + '?p=t'
+
+      if (
+        this.$ua.browser() === 'Safari' &&
+        parseFloat(this.$ua.browserVersion()) < 14.1
+      ) {
+        return url
       }
-      if (this.$ua.browser() === 'Safari') {
-        return endpoint + path
-      } else {
-        return endpoint + path + '?p=t'
-      }
+
+      return url + '?p=t'
     },
   },
 }
