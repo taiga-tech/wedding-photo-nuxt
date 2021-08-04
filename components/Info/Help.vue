@@ -49,6 +49,9 @@
               contain
               width="70%"
             >
+              <template v-slot:placeholder>
+                <app-progresscircle />
+              </template>
             </v-img>
             <div style="width: 15%">
               <v-btn
