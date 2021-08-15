@@ -44,6 +44,7 @@
                 right: () => swipe(-1),
               }"
               :src="conversion(awsCdnUrl, images[index].src)"
+              :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
               :alt="images[index].src"
               aspect-ratio="0.48955614"
               contain
