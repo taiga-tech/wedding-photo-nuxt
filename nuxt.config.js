@@ -164,6 +164,12 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    cache: true,
+    splitChunks: {
+      layouts: true,
+      pages: true,
+      commons: true,
+    },
     extend(config, { isDev, isClient }) {
       if (isClient) {
         config.devtool = 'source-map'
@@ -172,6 +178,7 @@ export default {
     babel: {
       plugins: [['@babel/plugin-proposal-private-methods', { loose: true }]],
     },
+    transpile: [/^vuetify/],
   },
 
   generate: { fallback: true },
