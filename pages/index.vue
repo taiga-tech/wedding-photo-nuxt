@@ -40,7 +40,7 @@
 
         <v-img
           :src="conversion(awsCdnUrl, 'img/top_demo_mobile.png')"
-          :lazy-src="conversion(awsCdnUrl, 'img/lazy.jpg')"
+          :lazy-src="conversion(awsCdnUrl, 'img/lazyy.jpg')"
           alt="top_demo_mobile"
           style="border-radius: 5px"
           width="25%"
