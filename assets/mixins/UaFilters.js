@@ -21,7 +21,7 @@ export default {
         return url + '?p=f'
       }
 
-      return url + '?p=t' // Lambdaメンテが終わるまで
+      return url + '?p=t'
     },
   },
 }
