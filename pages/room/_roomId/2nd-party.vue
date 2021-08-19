@@ -35,6 +35,10 @@
 import Meta from '~/assets/mixins/Meta'
 
 export default {
+  components: {
+    BaseContainer: () => import('~/components/Base/Container'),
+    RoomGeolonia: () => import('~/components/Room/Geolonia'),
+  },
   middleware: ['not_logined_user', 'is_admin', 'logined_user'],
   mixins: [Meta],
   data() {
