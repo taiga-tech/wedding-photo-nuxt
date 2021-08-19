@@ -3,7 +3,7 @@
     <v-card color="#12151d">
       <v-toolbar dense flat>
         <v-btn v-if="nickname" icon small @click="cogNickname = !cogNickname">
-          <v-icon small>mdi-cog</v-icon>
+          <v-icon small>{{ mdiCog }}</v-icon>
         </v-btn>
         <v-spacer />
         <v-btn
@@ -13,7 +13,7 @@
           :loading="loading"
           @click="submit"
         >
-          <v-icon>mdi-send</v-icon>
+          <v-icon>{{ mdiSend }}</v-icon>
         </v-btn>
       </v-toolbar>
 
@@ -41,7 +41,7 @@
           :counter="6"
           multiple
           label="Photo (最大6枚)"
-          prepend-icon="mdi-image-multiple"
+          :prepend-icon="mdiImageMultiple"
           show-size
           dense
           @change="fileChange"
@@ -71,17 +71,19 @@
         @click="local"
         v-on="on"
       >
-        <v-icon>mdi-image-multiple</v-icon>
+        <v-icon>{{ mdiImageMultiple }}</v-icon>
       </v-btn>
     </template>
   </v-dialog>
 </template>
 
 <script>
+import { mdiSend, mdiCog, mdiImageMultiple } from '@mdi/js'
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
 import ValidateRules from '~/assets/mixins/ValidateRules.js'
 
 export default {
+  components: { RoomPreview: () => import('~/components/Room/Preview') },
   mixins: [AuthComputed, ValidateRules],
 
   middleware: 'not_logined_user',
@@ -95,6 +97,9 @@ export default {
       photos: [],
       previews: [],
       cogNickname: false,
+      mdiSend,
+      mdiCog,
+      mdiImageMultiple,
     }
   },
 
