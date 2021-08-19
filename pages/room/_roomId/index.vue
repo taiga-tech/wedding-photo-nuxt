@@ -11,7 +11,7 @@
       <v-card height="100%" flat tile>
         <v-app-bar dense>
           <v-btn icon color="pink" @click="closemodal">
-            <v-icon>mdi-close</v-icon>
+            <v-icon>{{ mdiClose }}</v-icon>
           </v-btn>
           <v-app-bar-title>@{{ modalsrc.nickname }}</v-app-bar-title>
 
@@ -21,7 +21,7 @@
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
                 <v-btn text dark v-bind="attrs" v-on="on">
-                  <v-icon>mdi-dots-vertical</v-icon>
+                  <v-icon>{{ mdiDotsVertical }}</v-icon>
                 </v-btn>
               </template>
               <v-list>
@@ -169,14 +169,22 @@
     <room-new ref="roomNew" />
   </v-container>
 </template>
+
 <script>
+import { mdiClose, mdiDotsVertical } from '@mdi/js'
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
 import UaFilters from '~/assets/mixins/UaFilters'
 import ImageSwipe from '~/assets/mixins/ImageSwipe'
 import Download from '~/assets/mixins/Download'
 import Meta from '~/assets/mixins/Meta'
+;(async () => await require('~/assets/sass/masonry.scss'))()
 
 export default {
+  components: {
+    AppAlert: () => import('~/components/AppAlert'),
+    AppProgresscircle: () => import('~/components/AppProgresscircle'),
+    RoomNew: () => import('~/components/Room/New'),
+  },
   mixins: [AuthComputed, UaFilters, ImageSwipe, Download, Meta],
 
   middleware: ['not_logined_user', 'is_admin', 'logined_user'],
@@ -204,6 +212,8 @@ export default {
       meta: {
         title: null,
       },
+      mdiClose,
+      mdiDotsVertical,
     }
   },
 
@@ -251,5 +261,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" src="~/assets/sass/masonry.scss" scoped />
