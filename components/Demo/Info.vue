@@ -3,7 +3,7 @@
     <v-dialog v-model="open" width="520" persistent scrollable>
       <v-card color="#13151a">
         <v-card-title>
-          <v-icon color="info" left>mdi-alert-circle-outline</v-icon>
+          <v-icon color="info" left>{{ mdiAlertCircleOutline }}</v-icon>
           デモページへようこそ！
         </v-card-title>
 
@@ -17,14 +17,17 @@
           <v-card class="pa-1" color="#152535">
             <strong><u>使い方</u></strong>
             <ol>
-              <li>右下の<v-icon small>mdi-camera</v-icon>を押す</li>
+              <li>
+                右下の<v-icon small>{{ mdiCamera }}</v-icon
+                >を押す
+              </li>
               <li>
                 フォームを開いたら真ん中の
-                <v-icon small>mdi-camera</v-icon>
+                <v-icon small>{{ mdiCamera }}</v-icon>
                 を押し、写真(最大6枚)を選択する
               </li>
               <li>
-                右上の<v-icon small>mdi-send</v-icon
+                右上の<v-icon small>{{ mdiSend }}</v-icon
                 >を押すと写真を追加できます。
               </li>
             </ol>
@@ -43,7 +46,7 @@
           <v-spacer />
 
           <v-btn color="pink" aria-label="start" @click="open = false">
-            <v-icon>mdi-play</v-icon>
+            <v-icon>{{ mdiPlay }}</v-icon>
             <span class="hidden-sm-and-down">start</span>
           </v-btn>
         </v-card-actions>
@@ -53,9 +56,11 @@
 </template>
 
 <script>
+import { mdiAlertCircleOutline, mdiCamera, mdiSend, mdiPlay } from '@mdi/js'
 export default {
+  components: { AppSns: () => import('~/components/AppSns') },
   data() {
-    return { open: true }
+    return { open: true, mdiAlertCircleOutline, mdiCamera, mdiSend, mdiPlay }
   },
 }
 </script>
