@@ -37,7 +37,7 @@
                 href="https://twitter.com/Taiga_dev"
                 target="_blank"
                 rel="noopener"
-                ><v-icon x-small color="#69f0ae">mdi-twitter</v-icon>
+                ><v-icon x-small color="#69f0ae">{{ mdiTwitter }}</v-icon>
                 @Taiga_dev
               </a>
               でも受付可能です。
@@ -105,7 +105,7 @@
                   :fab="$vuetify.breakpoint.xs"
                   @click="refresh"
                 >
-                  <v-icon>mdi-rotate-right</v-icon>
+                  <v-icon>{{ mdiRotateRight }}</v-icon>
                   <span v-show="!$vuetify.breakpoint.xs">ページ再読み込み</span>
                 </v-btn>
               </v-col>
@@ -124,11 +124,11 @@
 
         <v-stepper-content step="3">
           <contacts-sucsess :data="data" />
-          <v-row class="mt-1" dense
-            ><v-col
-              ><v-btn block to="/" color="primary">トップへ戻る</v-btn></v-col
-            ></v-row
-          >
+          <v-row class="mt-1" dense>
+            <v-col>
+              <v-btn block to="/" color="primary">トップへ戻る</v-btn>
+            </v-col>
+          </v-row>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -136,9 +136,15 @@
 </template>
 
 <script>
+import { mdiTwitter, mdiRotateRight } from '@mdi/js'
 import Meta from '~/assets/mixins/Meta'
 
 export default {
+  components: {
+    BaseContainer: () => import('~/components/Base/Container'),
+    ContactsShow: () => import('~/components/Contacts/Show'),
+    ContactsSucsess: () => import('~/components/Contacts/Sucsess'),
+  },
   mixins: [Meta],
 
   data() {
@@ -164,6 +170,8 @@ export default {
       },
       response: null,
       error: { status: true, message: '' },
+      mdiTwitter,
+      mdiRotateRight,
     }
   },
 
