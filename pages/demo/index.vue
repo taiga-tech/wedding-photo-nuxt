@@ -15,7 +15,7 @@
       <v-card height="100%" flat tile>
         <v-app-bar dense>
           <v-btn icon color="pink" @click="openmodal = false">
-            <v-icon>mdi-close</v-icon>
+            <v-icon>{{ mdiClose }}</v-icon>
           </v-btn>
           <v-app-bar-title>@{{ modalsrc.nickname }}</v-app-bar-title>
         </v-app-bar>
@@ -150,12 +150,21 @@
 </template>
 
 <script>
+import { mdiClose } from '@mdi/js'
 import posts from '~/assets/json/DemoData'
 import UaFilters from '~/assets/mixins/UaFilters'
 import ImageSwipe from '~/assets/mixins/ImageSwipe'
 import Meta from '~/assets/mixins/Meta'
+;(async () => await require('~/assets/sass/masonry.scss'))()
 
 export default {
+  components: {
+    AppAlert: () => import('~/components/AppAlert'),
+    DemoInfo: () => import('~/components/Demo/Info'),
+    DemoNew: () => import('~/components/Demo/New'),
+    AppProgresscircle: () => import('~/components/AppProgresscircle'),
+    AppFooter: () => import('~/components/AppFooter'),
+  },
   mixins: [Meta, UaFilters, ImageSwipe],
 
   data() {
@@ -173,6 +182,7 @@ export default {
         description:
           'デモページへようこそ！このページではログイン後の動作を再現しています | Wedding Photo Album みんなでひとつだけのフォトアルバム',
       },
+      mdiClose,
     }
   },
 
@@ -195,5 +205,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss" src="~/assets/sass/masonry.scss" scoped />
