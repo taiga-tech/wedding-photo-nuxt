@@ -251,13 +251,10 @@
 import Meta from '~/assets/mixins/Meta'
 
 export default {
+  components: { AppFooter: () => import('~/components/AppFooter') },
   mixins: [Meta],
   data() {
-    return {
-      meta: {
-        title: '利用規約',
-      },
-    }
+    return { meta: { title: '利用規約' } }
   },
 }
 </script>
