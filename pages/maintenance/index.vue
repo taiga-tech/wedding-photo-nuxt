@@ -3,7 +3,7 @@
     <v-dialog v-model="open" width="500" persistent>
       <v-card color="#13151a">
         <v-card-title>
-          <v-icon color="error" left>mdi-cloud-alert</v-icon>
+          <v-icon color="error" left>{{ mdiCloudAlert }}</v-icon>
           復旧までしばらくお待ちください
         </v-card-title>
         <v-card-text>
@@ -12,7 +12,7 @@
         </v-card-text>
         <v-card-actions>
           <v-btn text to="/" color="pink">topへ</v-btn>
-          <v-spacer></v-spacer>
+          <v-spacer />
           <v-btn color="green" text to="/info/contact/"> お問い合わせ </v-btn>
           <v-btn
             color="primary"
@@ -21,7 +21,7 @@
             rel="noopener"
             target="_blank"
           >
-            <v-icon>mdi-twitter</v-icon>
+            <v-icon>{{ mdiTwitter }}</v-icon>
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -30,9 +30,10 @@
 </template>
 
 <script>
+import { mdiCloudAlert, mdiTwitter } from '@mdi/js'
 export default {
   data() {
-    return { open: true }
+    return { open: true, mdiCloudAlert, mdiTwitter }
   },
 }
 </script>
