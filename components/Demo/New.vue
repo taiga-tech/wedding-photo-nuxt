@@ -4,7 +4,7 @@
       <v-toolbar dense flat>
         <v-spacer />
         <v-btn :disabled="!valid" icon color="primary" @click="submit">
-          <v-icon>mdi-send</v-icon>
+          <v-icon>{{ mdiSend }}</v-icon>
         </v-btn>
       </v-toolbar>
 
@@ -30,7 +30,7 @@
           :counter="6"
           multiple
           label="Photo (最大6枚)"
-          prepend-icon="mdi-image-multiple"
+          :prepend-icon="mdiImageMultiple"
           show-size
           dense
           @change="fileChange"
@@ -60,16 +60,18 @@
         v-bind="attrs"
         v-on="on"
       >
-        <v-icon>mdi-image-multiple</v-icon>
+        <v-icon>{{ mdiImageMultiple }}</v-icon>
       </v-btn>
     </template>
   </v-dialog>
 </template>
 
 <script>
+import { mdiSend, mdiImageMultiple } from '@mdi/js'
 import ValidateRules from '~/assets/mixins/ValidateRules.js'
 
 export default {
+  components: { RoomPreview: () => import('~/components/Room/Preview') },
   mixins: [ValidateRules],
 
   data() {
@@ -95,6 +97,8 @@ export default {
         photos: [],
       },
       date: '',
+      mdiSend,
+      mdiImageMultiple,
     }
   },
 
