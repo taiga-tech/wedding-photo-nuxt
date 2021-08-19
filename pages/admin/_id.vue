@@ -94,6 +94,7 @@ import Meta from '~/assets/mixins/Meta'
 import UaFilters from '~/assets/mixins/UaFilters'
 
 export default {
+  components: { adminDelete: () => import('~/components/Admin/delete') },
   middleware: ['not_logined_user', 'is_admin'],
   mixins: [Meta, UaFilters],
 
