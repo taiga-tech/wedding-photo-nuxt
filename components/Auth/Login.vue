@@ -11,7 +11,8 @@
           v-on="on"
           @click="maintenance"
         >
-          <v-icon left>mdi-play</v-icon> ログインしてアルバムを開く
+          <v-icon left>{{ mdiPlay }}</v-icon>
+          ログインしてアルバムを開く
         </v-btn>
       </template>
     </v-dialog>
@@ -23,15 +24,15 @@
 </template>
 
 <script>
+import { mdiPlay } from '@mdi/js'
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
 
 export default {
+  components: { AuthForm: () => import('~/components/Auth/Form') },
   mixins: [AuthComputed],
 
   data() {
-    return {
-      openLogin: false,
-    }
+    return { openLogin: false, mdiPlay }
   },
 
   methods: {
