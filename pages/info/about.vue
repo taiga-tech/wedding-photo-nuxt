@@ -59,6 +59,7 @@
 import Meta from '~/assets/mixins/Meta'
 
 export default {
+  components: { BaseContainer: () => import('~/components/Base/Container') },
   mixins: [Meta],
   data() {
     return {
