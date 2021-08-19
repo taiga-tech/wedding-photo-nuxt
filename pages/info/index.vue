@@ -28,9 +28,7 @@
             rel="noopener"
           >
             <v-list-item-avatar>
-              <v-icon large :color="product.color"
-                >mdi-{{ product.icon }}</v-icon
-              >
+              <v-icon large :color="product.color">{{ product.icon }}</v-icon>
             </v-list-item-avatar>
             <v-list-item-content>
               <v-list-item-title>
@@ -56,7 +54,7 @@
         target="_blank"
         rel="noopener"
       >
-        <v-icon left>mdi-{{ sns.icon }}</v-icon>
+        <v-icon left>{{ sns.icon }}</v-icon>
         <b>{{ sns.name }}</b>
       </v-btn>
     </v-card-text>
@@ -64,32 +62,34 @@
 </template>
 
 <script>
+import { mdiLaravel, mdiNuxt, mdiNodejs } from '@mdi/js'
 import UaFilters from '~/assets/mixins/UaFilters'
-import socials from '~/assets/json/socials.json'
+import { socials } from '~/assets/js/socials.js'
 import Meta from '~/assets/mixins/Meta'
 
 export default {
+  components: { BaseContainer: () => import('~/components/Base/Container') },
   mixins: [UaFilters, Meta],
   data() {
     return {
       products: [
         {
           name: 'wedding-photo-api',
-          icon: 'laravel',
+          icon: mdiLaravel,
           color: '#ff291a',
           href: 'https://github.com/taiga-tech/wedding-photo-api/',
           about: 'バックエンド at AWS ECS Fargate',
         },
         {
           name: 'wedding-photo-nuxt',
-          icon: 'nuxt',
+          icon: mdiNuxt,
           color: '#04c58e',
           href: 'https://github.com/taiga-tech/wedding-photo-nuxt/',
           about: 'フロントエンド at Netlify',
         },
         {
           name: 'lambda-edge-image-convert',
-          icon: 'nodejs',
+          icon: mdiNodejs,
           color: '#67a063',
           href: 'https://github.com/taiga-tech/lambda-edge-image-convert/',
           about: '画像最適化処理 at AWS Lambda',
