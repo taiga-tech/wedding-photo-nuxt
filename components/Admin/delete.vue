@@ -7,11 +7,11 @@
     <v-dialog v-model="open" width="520" scrollable>
       <v-card color="#13151a">
         <v-btn icon absolute top right @click="open = false">
-          <v-icon>mdi-close</v-icon>
+          <v-icon>{{ mdiClose }}</v-icon>
         </v-btn>
 
         <v-card-title>
-          <v-icon left color="pink">mdi-cancel</v-icon>
+          <v-icon left color="pink">{{ mdiCancel }}</v-icon>
           ほんとに削除しますか？
         </v-card-title>
 
@@ -39,13 +39,15 @@
 </template>
 
 <script>
+import { mdiClose, mdiCancel } from '@mdi/js'
+
 export default {
   props: {
     selected: { type: Array, default: () => [] },
   },
 
   data() {
-    return { open: false, loading: false }
+    return { open: false, loading: false, mdiClose, mdiCancel }
   },
 
   methods: {
