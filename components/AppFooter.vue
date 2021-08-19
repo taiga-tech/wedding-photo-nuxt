@@ -24,9 +24,10 @@
 </template>
 
 <script>
-import links from '~/assets/json/Links.json'
+import { links } from '~/assets/js/Links'
 
 export default {
+  components: { AppSns: () => import('~/components/AppSns') },
   data() {
     return { links }
   },
