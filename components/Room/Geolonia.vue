@@ -12,9 +12,7 @@
 
 <script>
 export default {
-  props: {
-    sp: { type: Object, default: null },
-  },
+  props: { sp: { type: Object, default: null } },
 
   head: {
     script: [
