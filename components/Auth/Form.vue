@@ -42,6 +42,7 @@ import AuthComputed from '~/assets/mixins/AuthComputed.js'
 import ValidateRules from '~/assets/mixins/ValidateRules.js'
 
 export default {
+  components: { AppAlert: () => import('~/components/AppAlert') },
   mixins: [AuthComputed, ValidateRules],
 
   data() {
