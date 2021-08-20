@@ -27,44 +27,21 @@
             flat
             class="d-flex"
           >
-            <div style="width: 15%">
-              <v-btn
-                v-if="index !== 0"
-                text
-                block
-                height="100%"
-                @click="swipe(-1)"
-              >
-                <v-icon left>{{ mdiArrowLeft }}</v-icon>
-              </v-btn>
-            </div>
-            <v-img
-              v-touch="{
-                left: () => swipe(1),
-                right: () => swipe(-1),
-              }"
-              :src="conversion(awsCdnUrl, images[index].src)"
-              :lazy-src="conversion(awsCdnUrl, 'img/lazyy.jpg')"
-              :alt="images[index].src"
-              aspect-ratio="0.48955614"
-              contain
-              width="70%"
-            >
-              <template v-slot:placeholder>
-                <app-progresscircle />
-              </template>
-            </v-img>
-            <div style="width: 15%">
-              <v-btn
-                v-if="index !== 5"
-                text
-                block
-                height="100%"
-                @click="swipe(1)"
-              >
-                <v-icon left>{{ mdiArrowRight }}</v-icon>
-              </v-btn>
-            </div>
+            <v-carousel v-model="index" hide-delimiters :continuous="false">
+              <v-carousel-item v-for="(img, i) in images" :key="i">
+                <v-img
+                  :src="conversion(awsCdnUrl, img.src)"
+                  :alt="img.src"
+                  aspect-ratio="0.48955614"
+                  contain
+                  height="100%"
+                >
+                  <template v-slot:placeholder>
+                    <app-progresscircle />
+                  </template>
+                </v-img>
+              </v-carousel-item>
+            </v-carousel>
           </v-card>
         </v-card-text>
 
@@ -155,7 +132,6 @@ export default {
 
   data() {
     return {
-      e1: 1,
       openHelp: false,
       index: 0,
       links: [
@@ -235,30 +211,30 @@ export default {
       this.nicknameForm = false
     },
 
-    swipe(direction) {
-      if (this.images.length === 1) {
-        console.log('だめー')
-        return false
-      }
-      if (direction === 1) {
-        if (this.index + 1 < this.images.length) {
-          console.log('up')
-          this.index = direction + this.index
-        } else {
-          console.log('だめー')
-          return false
-        }
-      }
-      if (direction === -1) {
-        if (this.index !== 0) {
-          console.log('down')
-          this.index = direction + this.index
-        } else {
-          console.log('だめー')
-          return false
-        }
-      }
-    },
+    // swipe(direction) {
+    //   if (this.images.length === 1) {
+    //     console.log('だめー')
+    //     return false
+    //   }
+    //   if (direction === 1) {
+    //     if (this.index + 1 < this.images.length) {
+    //       console.log('up')
+    //       this.index = direction + this.index
+    //     } else {
+    //       console.log('だめー')
+    //       return false
+    //     }
+    //   }
+    //   if (direction === -1) {
+    //     if (this.index !== 0) {
+    //       console.log('down')
+    //       this.index = direction + this.index
+    //     } else {
+    //       console.log('だめー')
+    //       return false
+    //     }
+    //   }
+    // },
   },
 }
 </script>
