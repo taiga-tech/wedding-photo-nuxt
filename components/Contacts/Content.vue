@@ -48,9 +48,7 @@
 
 <script>
 export default {
-  props: {
-    data: { type: Object, default: null },
-  },
+  props: { data: { type: Object, default: null } },
 }
 </script>
 

@@ -13,6 +13,9 @@
 
 <script>
 export default {
+  components: {
+    ContactsContent: () => import('~/components/Contacts/Content'),
+  },
   props: {
     data: { type: Object, default: null },
   },

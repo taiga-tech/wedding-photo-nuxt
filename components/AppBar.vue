@@ -48,7 +48,7 @@
         <v-list v-if="check">
           <v-list-item color="pink" input-value="true" @click="logout">
             <v-list-item-action>
-              <v-icon>mdi-account-arrow-right-outline</v-icon>
+              <v-icon>{{ mdiAccountArrowRightOutline }}</v-icon>
             </v-list-item-action>
 
             <v-list-item-content>
@@ -87,14 +87,16 @@
 </template>
 
 <script>
+import { mdiAccountArrowRightOutline } from '@mdi/js'
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
-import links from '~/assets/json/Links.json'
+import { links } from '~/assets/js/Links'
 
 export default {
+  components: { InfoHelp: () => import('~/components/Info/Help') },
   mixins: [AuthComputed],
 
   data() {
-    return { drawer: false, links, scrollY: 0 }
+    return { drawer: false, links, scrollY: 0, mdiAccountArrowRightOutline }
   },
 
   mounted() {

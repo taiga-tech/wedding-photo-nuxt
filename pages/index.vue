@@ -10,7 +10,7 @@
         <auth-login v-if="!check"></auth-login>
         <div v-if="check">
           <v-btn :to="`/room/${user.id}/`" color="pink" large>
-            <v-icon left>mdi-play</v-icon>
+            <v-icon left>{{ mdiPlay }}</v-icon>
             {{ user.name }}のアルバム
           </v-btn>
         </div>
@@ -59,12 +59,20 @@
 </template>
 
 <script>
+import { mdiPlay } from '@mdi/js'
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
 import UaFilters from '~/assets/mixins/UaFilters'
+;(async () => await require('~/assets/sass/headTitle.css'))()
 
 export default {
+  components: {
+    AuthLogin: () => import('~/components/Auth/Login'),
+    AppProgresscircle: () => import('~/components/AppProgresscircle'),
+    AppFooter: () => import('~/components/AppFooter'),
+  },
   mixins: [AuthComputed, UaFilters],
+  data() {
+    return { mdiPlay }
+  },
 }
 </script>
-
-<style src="~/assets/sass/headTitle.css" scoped />

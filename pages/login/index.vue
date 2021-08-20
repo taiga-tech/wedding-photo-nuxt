@@ -19,6 +19,11 @@
 import AuthComputed from '~/assets/mixins/AuthComputed.js'
 
 export default {
+  components: {
+    BaseContainer: () => import('~/components/Base/Container'),
+    AppAlert: () => import('~/components/AppAlert'),
+    AuthForm: () => import('~/components/Auth/Form'),
+  },
   mixins: [AuthComputed],
 
   data() {

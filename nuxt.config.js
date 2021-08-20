@@ -1,4 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
 require('dotenv').config()
 
 export default {
@@ -79,13 +78,13 @@ export default {
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
     { src: '~/plugins/nuxt-client-init.js', mode: 'client' },
-    { src: '~/plugins/vue-masonry.js', mode: 'client' },
     { src: '~/plugins/axios.js' },
+    { src: '~/plugins/vue-masonry.js', mode: 'client' },
     // { src: '~/plugins/rollbar.js' },
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
-  components: true,
+  components: false,
 
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
@@ -95,11 +94,44 @@ export default {
     '@nuxtjs/stylelint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-
     '@nuxtjs/moment',
+    'nuxt-purgecss',
   ],
 
   moment: { locales: ['ja'] },
+
+  purgeCSS: {
+    enabled: process.env.NODE_ENV === 'production',
+    paths: [
+      'components/**/*.vue',
+      'layouts/**/*.vue',
+      'pages/**/*.vue',
+      'plugins/**/*.js',
+      './node_modules/vuetify/dist/vuetify.js',
+      'assets/**/*.scss',
+    ],
+    styleExtensions: ['.css'],
+    whitelist: ['v-application', 'v-application--wrap', 'layout', 'row', 'col'],
+    whitelistPatterns: [
+      /^v-((?!application).)*$/,
+      /^theme--*/,
+      /.*-transition/,
+      /^justify-*/,
+      /^p*-[0-9]/,
+      /^m*-[0-9]/,
+      /^text--*/,
+      /--text$/,
+      /^row-*/,
+      /^col-*/,
+    ],
+    whitelistPatternsChildren: [/^v-((?!application).)*$/, /^theme--*/],
+    extractors: [
+      {
+        extractor: (content) => content.match(/[A-z0-9-:\\/]+/g) || [],
+        extensions: ['html', 'vue', 'js'],
+      },
+    ],
+  },
 
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
@@ -107,13 +139,9 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-
     '@nuxtjs/proxy',
-
     '@nuxtjs/dotenv',
-
     'nuxt-user-agent',
-
     '@nuxtjs/google-gtag',
   ],
 
@@ -135,31 +163,8 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     treeShake: true,
-    defaultAssets: { font: false },
-
-    theme: {
-      options: {
-        // customProperties: true,
-        themeCache: {
-          get: (key) => localStorage.getItem(key),
-          set: (key, value) => localStorage.setItem(key, value),
-        },
-      },
-      light: false,
-      dark: true,
-      themes: {
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
-          anchor: colors.green.accent2,
-        },
-      },
-    },
+    defaultAssets: false,
+    optionsPath: '~/vuetify.options.js',
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)

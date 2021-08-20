@@ -1,19 +1,19 @@
 <template>
   <div>
     <v-btn icon midiam aria-label="info" @click="open">
-      <v-icon>mdi-help-circle-outline</v-icon>
+      <v-icon>{{ mdiHelpCircleOutline }}</v-icon>
     </v-btn>
 
     <v-dialog v-model="openHelp" persistent scrollable width="400">
       <v-card color="#13151a">
         <v-app-bar dense>
           <v-app-bar-title>
-            <v-icon color="info" left>mdi-help-circle-outline</v-icon>
+            <v-icon color="info" left>{{ mdiHelpCircleOutline }}</v-icon>
             ヘルプ
           </v-app-bar-title>
-          <v-spacer></v-spacer>
+          <v-spacer />
           <v-btn icon color="pink" right @click="close">
-            <v-icon>mdi-close</v-icon>
+            <v-icon>{{ mdiClose }}</v-icon>
           </v-btn>
         </v-app-bar>
 
@@ -27,50 +27,27 @@
             flat
             class="d-flex"
           >
-            <div style="width: 15%">
-              <v-btn
-                v-if="index !== 0"
-                text
-                block
-                height="100%"
-                @click="swipe(-1)"
-              >
-                <v-icon left>mdi-arrow-left</v-icon>
-              </v-btn>
-            </div>
-            <v-img
-              v-touch="{
-                left: () => swipe(1),
-                right: () => swipe(-1),
-              }"
-              :src="conversion(awsCdnUrl, images[index].src)"
-              :lazy-src="conversion(awsCdnUrl, 'img/lazyy.jpg')"
-              :alt="images[index].src"
-              aspect-ratio="0.48955614"
-              contain
-              width="70%"
-            >
-              <template v-slot:placeholder>
-                <app-progresscircle />
-              </template>
-            </v-img>
-            <div style="width: 15%">
-              <v-btn
-                v-if="index !== 5"
-                text
-                block
-                height="100%"
-                @click="swipe(1)"
-              >
-                <v-icon left>mdi-arrow-right</v-icon>
-              </v-btn>
-            </div>
+            <v-carousel v-model="index" hide-delimiters :continuous="false">
+              <v-carousel-item v-for="(img, i) in images" :key="i">
+                <v-img
+                  :src="conversion(awsCdnUrl, img.src)"
+                  :alt="img.src"
+                  aspect-ratio="0.48955614"
+                  contain
+                  height="100%"
+                >
+                  <template v-slot:placeholder>
+                    <app-progresscircle />
+                  </template>
+                </v-img>
+              </v-carousel-item>
+            </v-carousel>
           </v-card>
         </v-card-text>
 
         <v-card-actions class="py-0">
           <v-btn v-if="index === 5" block color="pink" @click="close">
-            <v-icon left>mdi-play</v-icon>
+            <v-icon left>{{ mdiPlay }}</v-icon>
             start
           </v-btn>
         </v-card-actions>
@@ -106,7 +83,7 @@
     <v-dialog v-model="nicknameForm" persistent scrollable width="500">
       <v-card color="#13151a">
         <v-app-bar dense flat>
-          <v-icon left>mdi-cog</v-icon>
+          <v-icon left>{{ mdiCog }}</v-icon>
           ニックネームを決めてください
         </v-app-bar>
         <v-form v-model="valid" class="pa-4">
@@ -118,7 +95,7 @@
             required
             :rules="rules.nickname"
           ></v-text-field>
-          <v-spacer></v-spacer>
+          <v-spacer />
           <v-btn
             type="submit"
             block
@@ -135,15 +112,26 @@
 </template>
 
 <script>
+import {
+  mdiArrowLeft,
+  mdiArrowRight,
+  mdiHelpCircleOutline,
+  mdiClose,
+  mdiCog,
+  mdiPlay,
+} from '@mdi/js'
 import ValidateRules from '~/assets/mixins/ValidateRules.js'
 import UaFilters from '~/assets/mixins/UaFilters'
 
 export default {
+  components: {
+    AppProgresscircle: () => import('~/components/AppProgresscircle'),
+    AppSns: () => import('~/components/AppSns'),
+  },
   mixins: [UaFilters, ValidateRules],
 
   data() {
     return {
-      e1: 1,
       openHelp: false,
       index: 0,
       links: [
@@ -160,6 +148,12 @@ export default {
       ],
       nicknameForm: false,
       nickname: '',
+      mdiArrowRight,
+      mdiArrowLeft,
+      mdiHelpCircleOutline,
+      mdiClose,
+      mdiCog,
+      mdiPlay,
     }
   },
 
@@ -217,30 +211,30 @@ export default {
       this.nicknameForm = false
     },
 
-    swipe(direction) {
-      if (this.images.length === 1) {
-        console.log('だめー')
-        return false
-      }
-      if (direction === 1) {
-        if (this.index + 1 < this.images.length) {
-          console.log('up')
-          this.index = direction + this.index
-        } else {
-          console.log('だめー')
-          return false
-        }
-      }
-      if (direction === -1) {
-        if (this.index !== 0) {
-          console.log('down')
-          this.index = direction + this.index
-        } else {
-          console.log('だめー')
-          return false
-        }
-      }
-    },
+    // swipe(direction) {
+    //   if (this.images.length === 1) {
+    //     console.log('だめー')
+    //     return false
+    //   }
+    //   if (direction === 1) {
+    //     if (this.index + 1 < this.images.length) {
+    //       console.log('up')
+    //       this.index = direction + this.index
+    //     } else {
+    //       console.log('だめー')
+    //       return false
+    //     }
+    //   }
+    //   if (direction === -1) {
+    //     if (this.index !== 0) {
+    //       console.log('down')
+    //       this.index = direction + this.index
+    //     } else {
+    //       console.log('だめー')
+    //       return false
+    //     }
+    //   }
+    // },
   },
 }
 </script>

@@ -3,7 +3,7 @@
     <v-dialog v-model="open" width="500" persistent>
       <v-card color="#13151a">
         <v-card-title>
-          <v-icon color="#dd2c00" left>mdi-cloud-alert</v-icon>
+          <v-icon color="#dd2c00" left>{{ mdiCloudAlert }}</v-icon>
           <h1 v-if="error.statusCode === 404" style="font-size: 20px">
             {{ pageNotFound }}
           </h1>
@@ -22,7 +22,7 @@
             rel="noopener"
             target="_blank"
           >
-            <v-icon>mdi-twitter</v-icon>
+            <v-icon>{{ mdiTwitter }}</v-icon>
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -31,27 +31,25 @@
 </template>
 
 <script>
+import { mdiCloudAlert, mdiTwitter } from '@mdi/js'
 export default {
   layout: 'empty',
   props: {
-    error: {
-      type: Object,
-      default: null,
-    },
+    error: { type: Object, default: null },
   },
   data() {
     return {
       pageNotFound: '404 Not Found',
       otherError: 'An error occurred',
       open: true,
+      mdiCloudAlert,
+      mdiTwitter,
     }
   },
   head() {
     const title =
       this.error.statusCode === 404 ? this.pageNotFound : this.otherError
-    return {
-      title,
-    }
+    return { title }
   },
 }
 </script>

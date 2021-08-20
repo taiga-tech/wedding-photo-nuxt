@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  components: { AppFooter: () => import('~/components/AppFooter') },
   props: {
     maxWidth: { type: NaN, default: 940 },
     footer: { type: Boolean, default: true },

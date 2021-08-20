@@ -6,7 +6,7 @@
           <v-img :src="img.path" height="100">
             <template>
               <v-btn icon x-small color="pink" @click="removePreviews(i)">
-                <v-icon>mdi-close-circle</v-icon>
+                <v-icon>{{ mdiCloseCircle }}</v-icon>
               </v-btn>
             </template>
           </v-img>
@@ -17,10 +17,14 @@
 </template>
 
 <script>
+import { mdiCloseCircle } from '@mdi/js'
 export default {
   props: {
     previews: { type: Array, default: () => [] },
     photos: { type: Array, default: () => [] },
+  },
+  data() {
+    return { mdiCloseCircle }
   },
 
   methods: {
